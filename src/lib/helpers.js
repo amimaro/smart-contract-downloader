@@ -29,7 +29,7 @@ export const getContractSourceCode = async (
   return await axios.get(networkRequests[network]);
 };
 
-export const parseSourceCodeObject = (sourceCode, network) => {
+const parseSourceCodeObject = (sourceCode, network) => {
   if (network.indexOf("bsc") >= 0) return JSON.parse(sourceCode);
   return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
 };
