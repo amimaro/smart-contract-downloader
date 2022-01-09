@@ -52,6 +52,7 @@ export const AppForm = ({ submitForm }) => {
                 <option value="kovan">Ethereum Kovan</option>
                 <option value="goerli">Ethereum Goerli</option>
                 <option value="bsc">Binance Smart Chain Mainnet</option>
+                <option value="bscTest">Binance Smart Chain Testnet</option>
               </AppSelect>
             </div>
             <div className="w-full flex flex-col gap-2">
