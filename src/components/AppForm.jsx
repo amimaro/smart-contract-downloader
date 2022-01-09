@@ -43,21 +43,7 @@ export const AppForm = ({ submitForm }) => {
           <div className="flex flex-col gap-4 items-center">
             <div className="w-full flex flex-col gap-2">
               <label className="font-semibold text-center" htmlFor="apiKey">
-                Network
-              </label>
-              <AppSelect name="network">
-                <option value="mainnet">Ethereum Mainnet</option>
-                <option value="rinkeby">Ethereum Rinkeby</option>
-                <option value="ropsten">Ethereum Ropsten</option>
-                <option value="kovan">Ethereum Kovan</option>
-                <option value="goerli">Ethereum Goerli</option>
-                <option value="bsc">Binance Smart Chain Mainnet</option>
-                <option value="bscTest">Binance Smart Chain Testnet</option>
-              </AppSelect>
-            </div>
-            <div className="w-full flex flex-col gap-2">
-              <label className="font-semibold text-center" htmlFor="apiKey">
-                Etherscan API Key
+                API Key
               </label>
               <Field
                 id="apiKey"
@@ -74,6 +60,20 @@ export const AppForm = ({ submitForm }) => {
                 component="div"
                 className="text-xs text-red-500 pl-2"
               />
+            </div>
+            <div className="w-full flex flex-col gap-2">
+              <label className="font-semibold text-center" htmlFor="apiKey">
+                Network
+              </label>
+              <AppSelect name="network">
+                <option value="mainnet">Ethereum Mainnet</option>
+                <option value="rinkeby">Ethereum Rinkeby</option>
+                <option value="ropsten">Ethereum Ropsten</option>
+                <option value="kovan">Ethereum Kovan</option>
+                <option value="goerli">Ethereum Goerli</option>
+                <option value="bsc">Binance Smart Chain Mainnet</option>
+                <option value="bscTest">Binance Smart Chain Testnet</option>
+              </AppSelect>
             </div>
             <div className="w-full flex flex-col gap-2">
               <label
