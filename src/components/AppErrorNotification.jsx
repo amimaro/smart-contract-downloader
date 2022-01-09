@@ -4,11 +4,13 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 export const AppErrorNotification = forwardRef((_props, ref) => {
   const animationIn = "animate__animated animate__fadeInDown";
   const animationOut = "animate__animated animate__fadeOutUp";
+  const [message, setMessage] = useState("");
   const [animation, setAnimation] = useState("");
   const [copied, setCopied] = useState(false);
 
   useImperativeHandle(ref, () => ({
-    showNotification() {
+    showNotification(message = "Ops, something went wront!") {
+      setMessage(message);
       setCopied(true);
       setAnimation(animationIn);
       setTimeout(() => {
@@ -24,7 +26,7 @@ export const AppErrorNotification = forwardRef((_props, ref) => {
           <div
             className={`text-center text-red-700 bg-red-200 rounded-md p-2 tracking-widest w-72 ${animation}`}
           >
-            Ops, something went wront!
+            {message}
           </div>
         </div>
       )}

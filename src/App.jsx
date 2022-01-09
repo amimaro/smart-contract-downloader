@@ -32,6 +32,10 @@ function App() {
         contractAddress
       );
       console.log("result", result);
+      if (result.data.result === "Invalid API Key") {
+        errorChildRef.current.showNotification("Invalid API Key");
+        return;
+      }
       const sourceCodes = result.data.result;
       const contractContents = getContractContentList(sourceCodes, network);
       setContract({
