@@ -9,12 +9,17 @@ import {
   getContractSourceCode,
 } from "./lib/helpers";
 
-function App() {
-  const [contract, setContract] = useState({
+function defaultContractObj() {
+  return {
     address: "",
     contents: [],
-  });
+  };
+}
+
+function App() {
+  const [contract, setContract] = useState(defaultContractObj());
   const fetchContract = async (apiKey, contractAddress) => {
+    setContract(defaultContractObj());
     const result = await getContractSourceCode(apiKey, contractAddress);
     const sourceCodes = result.data.result;
     const contractContents = getContractContentList(sourceCodes);
