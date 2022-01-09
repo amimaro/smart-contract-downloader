@@ -42,3 +42,9 @@ export const exportContractContentsToZip = (
     saveAs(content, `contract_${contractAddress}.zip`);
   });
 };
+
+export const copyToClipboard = (data) => {
+  navigator.clipboard.writeText(data).then(function () {
+    alert("Copied!");
+  });
+};

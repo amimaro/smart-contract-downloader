@@ -1,11 +1,7 @@
 import { DuplicateIcon } from "./icons/DuplicateIcon";
+import { copyToClipboard } from "../lib/helpers";
 
 export const AppPreviewContract = ({ contract }) => {
-  const copyToClipboard = (data) => {
-    navigator.clipboard.writeText(data).then(function () {
-      alert("Copied!");
-    });
-  };
   return (
     <div className="flex flex-col gap-3">
       {contract.contents.map((contractData, index) => {
