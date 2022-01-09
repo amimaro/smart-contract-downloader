@@ -44,7 +44,5 @@ export const exportContractContentsToZip = (
 };
 
 export const copyToClipboard = (data) => {
-  navigator.clipboard.writeText(data).then(function () {
-    alert("Copied!");
-  });
+  navigator.clipboard.writeText(data);
 };

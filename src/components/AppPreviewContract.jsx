@@ -1,7 +1,7 @@
 import { DuplicateIcon } from "./icons/DuplicateIcon";
 import { copyToClipboard } from "../lib/helpers";
 
-export const AppPreviewContract = ({ contract }) => {
+export const AppPreviewContract = ({ contract, showNotification }) => {
   return (
     <div className="flex flex-col gap-3">
       {contract.contents.map((contractData, index) => {
@@ -11,7 +11,12 @@ export const AppPreviewContract = ({ contract }) => {
               <span className="font-semibold">
                 {index + 1}: {contractData.path}
               </span>
-              <button onClick={() => copyToClipboard(contractData.content)}>
+              <button
+                onClick={() => {
+                  showNotification();
+                  copyToClipboard(contractData.content);
+                }}
+              >
                 <DuplicateIcon />
               </button>
             </div>

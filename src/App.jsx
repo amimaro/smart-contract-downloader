@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AppForm } from "./components/AppForm";
 import { AppButton } from "./components/AppButton";
 import { AppPreviewContract } from "./components/AppPreviewContract";
+import { AppCopiedToClipboardNotification } from "./components/AppCopiedToClipboardNotification";
 import { DownloadIcon } from "./components/icons/DownloadIcon";
 import {
   exportContractContentsToZip,
@@ -18,6 +19,8 @@ function defaultContractObj() {
 
 function App() {
   const [contract, setContract] = useState(defaultContractObj());
+  const childRef: any = useRef();
+
   const fetchContract = async (apiKey, contractAddress) => {
     setContract(defaultContractObj());
     const result = await getContractSourceCode(apiKey, contractAddress);
@@ -35,6 +38,7 @@ function App() {
 
   return (
     <div className="md:px-10 px-4 pt-8 pb-4 w-full">
+      <AppCopiedToClipboardNotification ref={childRef} />
       <h1 className="text-2xl font-semibold tracking-widest text-center pb-4">
         Contract Downloader
       </h1>
@@ -55,7 +59,10 @@ function App() {
             </AppButton>
           </div>
           <div className="py-2"></div>
-          <AppPreviewContract contract={contract} />
+          <AppPreviewContract
+            contract={contract}
+            showNotification={() => childRef.current.showNotification()}
+          />
         </>
       )}
     </div>
