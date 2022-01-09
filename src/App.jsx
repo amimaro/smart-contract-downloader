@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { AppInput } from "./components/AppInput";
-
-function parseSourceCodeObject(sourceCode) {
-  return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
-}
+import {
+  exportContractContentToZip,
+  getContractSourceCode,
+} from "./lib/helpers";
 
 function App() {
   const [apiKey, setApiKey] = useState(
@@ -18,19 +17,9 @@ function App() {
       if (apiKey.length !== 34 || contractAddress.length !== 42) {
         return;
       }
-      const result = await axios.get(
-        `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`
-      );
+      const result = await getContractSourceCode(apiKey, contractAddress);
       const sourceCodes = result.data.result;
-      for (const sourceCode of sourceCodes) {
-        const parsedSourceCode = parseSourceCodeObject(sourceCode.SourceCode);
-        console.log(parsedSourceCode);
-        for (const [fileName, contentObj] of Object.entries(
-          parsedSourceCode.sources
-        )) {
-          console.log(fileName, contentObj);
-        }
-      }
+      exportContractContentToZip(sourceCodes, contractAddress);
     })();
   }, [apiKey, contractAddress]);
   return (
