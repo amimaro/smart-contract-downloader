@@ -62,12 +62,6 @@ function App() {
       </h1>
       <div className="flex justify-center gap-4 pb-2">
         <GitHubButton
-          href="https://github.com/amimaro"
-          aria-label="Follow @amimaro on GitHub"
-        >
-          Follow @amimaro
-        </GitHubButton>
-        <GitHubButton
           href="https://github.com/amimaro/smart-contract-downloader"
           data-show-count="true"
           aria-label="Star amimaro/smart-contract-downloader on GitHub"
@@ -79,6 +73,12 @@ function App() {
           aria-label="Fork amimaro/smart-contract-downloader on GitHub"
         >
           Fork
+        </GitHubButton>
+        <GitHubButton
+          href="https://github.com/amimaro"
+          aria-label="Follow @amimaro on GitHub"
+        >
+          Follow @amimaro
         </GitHubButton>
       </div>
       <div className="flex justify-center w-full">
