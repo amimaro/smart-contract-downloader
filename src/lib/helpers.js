@@ -4,10 +4,10 @@ import { saveAs } from "file-saver";
 
 export const NETWORKS = [
   { id: "mainnet", label: "Ethereum Mainnet", site: "https://etherscan.io/" },
-  { id: "rinkeby", label: "Ethereum Rinkeby", site: "https://etherscan.io/" },
-  { id: "ropsten", label: "Ethereum Ropsten", site: "https://etherscan.io/" },
-  { id: "kovan", label: "Ethereum Kovan", site: "https://etherscan.io/" },
-  { id: "goerli", label: "Ethereum Goerli", site: "https://etherscan.io/" },
+  { id: "rinkeby", label: "Rinkeby Testnet", site: "https://etherscan.io/" },
+  { id: "ropsten", label: "Ropsten Testnet", site: "https://etherscan.io/" },
+  { id: "kovan", label: "Kovan Testnet", site: "https://etherscan.io/" },
+  { id: "goerli", label: "Goerli Testnet", site: "https://etherscan.io/" },
   {
     id: "bsc",
     label: "Binance Smart Chain Mainnet",

@@ -85,7 +85,7 @@ export const AppForm = ({ submitForm }) => {
               </label>
               <AppSelect name="network">
                 {NETWORKS.map((network) => (
-                  <option key={network.id} value={network.id}>
+                  <option key={network.id} value={network.id} className="text-center">
                     {network.label}
                   </option>
                 ))}
