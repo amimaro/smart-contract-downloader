@@ -8,6 +8,12 @@ export const NETWORKS = [
   { id: "ropsten", label: "Ropsten Testnet", site: "https://etherscan.io/" },
   { id: "kovan", label: "Kovan Testnet", site: "https://etherscan.io/" },
   { id: "goerli", label: "Goerli Testnet", site: "https://etherscan.io/" },
+  { id: "polygon", label: "Polygon Mainnet", site: "https://polygonscan.com/" },
+  {
+    id: "polygonTest",
+    label: "Polygon Mumbai Testnet",
+    site: "https://polygonscan.com/",
+  },
   {
     id: "bsc",
     label: "Binance Smart Chain Mainnet",
@@ -31,6 +37,8 @@ export const getContractSourceCode = async (
     ropsten: `https://api-ropsten.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     kovan: `https://api-kovan.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     goerli: `https://api-goerli.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    polygon: `https://api.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    polygonTest: `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     bsc: `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     bscTest: `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
   };
@@ -48,7 +56,11 @@ const getSourcesObject = (parsedSourceCode, network) => {
 };
 
 const isSingleFileContract = (sourceCode) => {
-  return sourceCode.indexOf("pragma") === 0;
+  return (
+    sourceCode.indexOf("pragma") === 0 ||
+    sourceCode.indexOf("//") === 0 ||
+    sourceCode.indexOf("/*") === 0
+  );
 };
 
 export const getContractContentList = (sourceCodes, network) => {
