@@ -31,6 +31,7 @@ function App() {
         network,
         contractAddress
       );
+      console.log("result", result);
       const sourceCodes = result.data.result;
       const contractContents = getContractContentList(sourceCodes, network);
       setContract({
