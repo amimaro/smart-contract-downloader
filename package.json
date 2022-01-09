@@ -1,5 +1,5 @@
 {
-  "name": "download-etherscan-contract",
+  "name": "contract-downloader",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
