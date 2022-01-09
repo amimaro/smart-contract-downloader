@@ -7,10 +7,15 @@ function parseSourceCodeObject(sourceCode) {
 }
 
 function App() {
-  const [apiKey, setApiKey] = useState("");
-  const [contractAddress, setContractAddress] = useState("");
+  const [apiKey, setApiKey] = useState(process.env.ETHERSCAN_APIKEY || "");
+  const [contractAddress, setContractAddress] = useState(
+    process.env.DEC_CONTRACT || ""
+  );
   useEffect(() => {
     (async () => {
+      if (apiKey.length !== 34 || contractAddress.length !== 42) {
+        return;
+      }
       const result = await axios.get(
         `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`
       );
@@ -25,7 +30,7 @@ function App() {
         }
       }
     })();
-  }, [apiKey]);
+  }, [apiKey, contractAddress]);
   return (
     <div>
       <AppInput
