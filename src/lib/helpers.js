@@ -2,6 +2,16 @@ import axios from "axios";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
+export const NETWORKS = [
+  { id: "mainnet", label: "Ethereum Mainnet" },
+  { id: "rinkeby", label: "Ethereum Rinkeby" },
+  { id: "ropsten", label: "Ethereum Ropsten" },
+  { id: "kovan", label: "Ethereum Kovan" },
+  { id: "goerli", label: "Ethereum Goerli" },
+  { id: "bsc", label: "Binance Smart Chain Mainnet" },
+  { id: "bscTest", label: "Binance Smart Chain Testnet" },
+];
+
 export const getContractSourceCode = async (
   apiKey,
   network,

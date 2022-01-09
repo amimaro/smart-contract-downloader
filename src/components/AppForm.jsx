@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
+import { NETWORKS } from "../lib/helpers";
 
 export const AppForm = ({ submitForm }) => {
   return (
@@ -66,13 +67,11 @@ export const AppForm = ({ submitForm }) => {
                 Network
               </label>
               <AppSelect name="network">
-                <option value="mainnet">Ethereum Mainnet</option>
-                <option value="rinkeby">Ethereum Rinkeby</option>
-                <option value="ropsten">Ethereum Ropsten</option>
-                <option value="kovan">Ethereum Kovan</option>
-                <option value="goerli">Ethereum Goerli</option>
-                <option value="bsc">Binance Smart Chain Mainnet</option>
-                <option value="bscTest">Binance Smart Chain Testnet</option>
+                {NETWORKS.map((network) => (
+                  <option key={network.id} value={network.id}>
+                    {network.label}
+                  </option>
+                ))}
               </AppSelect>
             </div>
             <div className="w-full flex flex-col gap-2">
