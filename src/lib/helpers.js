@@ -2,7 +2,12 @@ import axios from "axios";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-export const getContractSourceCode = async (apiKey, contractAddress) => {
+export const getContractSourceCode = async (
+  apiKey,
+  network,
+  contractAddress
+) => {
+  console.log(network);
   return await axios.get(
     `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`
   );

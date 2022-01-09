@@ -3,6 +3,7 @@ import { AppForm } from "./components/AppForm";
 import { AppButton } from "./components/AppButton";
 import { AppPreviewContract } from "./components/AppPreviewContract";
 import { AppCopiedToClipboardNotification } from "./components/AppCopiedToClipboardNotification";
+import { AppErrorNotification } from "./components/AppErrorNotification";
 import { DownloadIcon } from "./components/icons/DownloadIcon";
 import {
   exportContractContentsToZip,
@@ -19,17 +20,26 @@ function defaultContractObj() {
 
 function App() {
   const [contract, setContract] = useState(defaultContractObj());
-  const childRef: any = useRef();
+  const clipboardChildRef: any = useRef();
+  const errorChildRef: any = useRef();
 
-  const fetchContract = async (apiKey, contractAddress) => {
+  const fetchContract = async (apiKey, network, contractAddress) => {
     setContract(defaultContractObj());
-    const result = await getContractSourceCode(apiKey, contractAddress);
-    const sourceCodes = result.data.result;
-    const contractContents = getContractContentList(sourceCodes);
-    setContract({
-      address: contractAddress,
-      contents: contractContents,
-    });
+    try {
+      const result = await getContractSourceCode(
+        apiKey,
+        network,
+        contractAddress
+      );
+      const sourceCodes = result.data.result;
+      const contractContents = getContractContentList(sourceCodes);
+      setContract({
+        address: contractAddress,
+        contents: contractContents,
+      });
+    } catch (e) {
+      errorChildRef.current.showNotification();
+    }
   };
 
   const downloadContract = () => {
@@ -38,7 +48,8 @@ function App() {
 
   return (
     <div className="md:px-10 px-4 pt-8 pb-4 w-full">
-      <AppCopiedToClipboardNotification ref={childRef} />
+      <AppCopiedToClipboardNotification ref={clipboardChildRef} />
+      <AppErrorNotification ref={errorChildRef} />
       <h1 className="text-2xl font-semibold tracking-widest text-center pb-4">
         Contract Downloader
       </h1>
@@ -61,7 +72,9 @@ function App() {
           <div className="py-2"></div>
           <AppPreviewContract
             contract={contract}
-            showNotification={() => childRef.current.showNotification()}
+            showNotification={() =>
+              clipboardChildRef.current.showNotification()
+            }
           />
         </>
       )}
