@@ -1,11 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AppButton } from "./AppButton";
+import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
 
 export const AppForm = ({ submitForm }) => {
   return (
     <Formik
       initialValues={{
+        network: "mainnet",
         apiKey: process.env.REACT_APP_ETHERSCAN_APIKEY || "",
         contractAddress: process.env.REACT_APP_CONTRACT_ADDRESS || "",
       }}
@@ -25,7 +27,11 @@ export const AppForm = ({ submitForm }) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         (async () => {
-          await submitForm(values.apiKey, values.contractAddress);
+          await submitForm(
+            values.apiKey,
+            values.network,
+            values.contractAddress
+          );
           setTimeout(() => {
             setSubmitting(false);
           }, 400);
@@ -35,6 +41,19 @@ export const AppForm = ({ submitForm }) => {
       {({ isSubmitting, errors, touched }) => (
         <Form>
           <div className="flex flex-col gap-4 items-center">
+            <div className="w-full flex flex-col gap-2">
+              <label className="font-semibold text-center" htmlFor="apiKey">
+                Network
+              </label>
+              <AppSelect name="network">
+                <option value="mainnet">Ethereum Mainnet</option>
+                <option value="rinkeby">Ethereum Rinkeby</option>
+                <option value="ropsten">Ethereum Ropsten</option>
+                <option value="kovan">Ethereum Kovan</option>
+                <option value="goerli">Ethereum Goerli</option>
+                <option value="bsc">Binance Smart Chain Mainnet</option>
+              </AppSelect>
+            </div>
             <div className="w-full flex flex-col gap-2">
               <label className="font-semibold text-center" htmlFor="apiKey">
                 Etherscan API Key
