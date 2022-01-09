@@ -10,6 +10,7 @@ import {
   getContractContentList,
   getContractSourceCode,
 } from "./lib/helpers";
+import GitHubButton from "react-github-btn";
 
 function defaultContractObj() {
   return {
@@ -59,6 +60,27 @@ function App() {
       <h1 className="text-2xl font-semibold tracking-widest text-center pb-4">
         Smart Contract Downloader
       </h1>
+      <div className="flex justify-center gap-4 pb-2">
+        <GitHubButton
+          href="https://github.com/amimaro"
+          aria-label="Follow @amimaro on GitHub"
+        >
+          Follow @amimaro
+        </GitHubButton>
+        <GitHubButton
+          href="https://github.com/amimaro/smart-contract-downloader"
+          data-show-count="true"
+          aria-label="Star amimaro/smart-contract-downloader on GitHub"
+        >
+          Star
+        </GitHubButton>
+        <GitHubButton
+          href="https://github.com/amimaro/smart-contract-downloader/fork"
+          aria-label="Fork amimaro/smart-contract-downloader on GitHub"
+        >
+          Fork
+        </GitHubButton>
+      </div>
       <div className="flex justify-center w-full">
         <div className="border-2 md:px-8 px-2 py-4 rounded-sm lg:w-2/5 md:w-3/5 w-full">
           <AppForm submitForm={fetchContract} />
