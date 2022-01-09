@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AppForm } from "./components/AppForm";
 import { AppButton } from "./components/AppButton";
+import { AppPreviewContract } from "./components/AppPreviewContract";
 import { DownloadIcon } from "./components/icons/DownloadIcon";
-import { DuplicateIcon } from "./components/icons/DuplicateIcon";
 import {
   exportContractContentsToZip,
   getContractContentList,
@@ -33,12 +33,6 @@ function App() {
     exportContractContentsToZip(contract.contents, contract.address);
   };
 
-  const copyToClipboard = (data) => {
-    navigator.clipboard.writeText(data).then(function () {
-      alert("Copied!");
-    });
-  };
-
   return (
     <div className="md:px-10 px-4 pt-8 pb-4 w-full">
       <h1 className="text-2xl font-semibold tracking-widest text-center pb-4">
@@ -61,29 +55,7 @@ function App() {
             </AppButton>
           </div>
           <div className="py-2"></div>
-          <div className="flex flex-col gap-3">
-            {contract.contents.map((contractData, index) => {
-              return (
-                <div key={contractData.path}>
-                  <div className="flex flex-wrap gap-2 pb-2">
-                    <span className="font-semibold">
-                      {index + 1}: {contractData.path}
-                    </span>
-                    <button
-                      onClick={() => copyToClipboard(contractData.content)}
-                    >
-                      <DuplicateIcon />
-                    </button>
-                  </div>
-                  <textarea
-                    className="border-2 w-full h-40 p-2 focus:ring-4 rounded-md"
-                    value={contractData.content}
-                    readOnly
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <AppPreviewContract contract={contract} />
         </>
       )}
     </div>
