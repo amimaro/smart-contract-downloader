@@ -10,7 +10,7 @@ export const AppForm = ({ submitForm }) => {
     <Formik
       initialValues={{
         network: process.env.REACT_APP_NETWORK || "mainnet",
-        apiKey: process.env.REACT_APP_ETHERSCAN_APIKEY || "",
+        apiKey: process.env.REACT_APP_APIKEY || "",
         contractAddress: process.env.REACT_APP_CONTRACT_ADDRESS || "",
       }}
       validate={(values) => {
