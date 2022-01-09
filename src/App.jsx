@@ -7,9 +7,11 @@ function parseSourceCodeObject(sourceCode) {
 }
 
 function App() {
-  const [apiKey, setApiKey] = useState(process.env.ETHERSCAN_APIKEY || "");
+  const [apiKey, setApiKey] = useState(
+    process.env.REACT_APP_ETHERSCAN_APIKEY || ""
+  );
   const [contractAddress, setContractAddress] = useState(
-    process.env.DEC_CONTRACT || ""
+    process.env.REACT_APP_CONTRACT_ADDRESS || ""
   );
   useEffect(() => {
     (async () => {
