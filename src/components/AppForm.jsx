@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
+import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
 import { NETWORKS } from "../lib/helpers";
 
 export const AppForm = ({ submitForm }) => {
@@ -39,12 +40,28 @@ export const AppForm = ({ submitForm }) => {
         })();
       }}
     >
-      {({ isSubmitting, errors, touched }) => (
+      {({ isSubmitting, errors, touched, values }) => (
         <Form>
           <div className="flex flex-col gap-4 items-center">
             <div className="w-full flex flex-col gap-2">
               <label className="font-semibold text-center" htmlFor="apiKey">
-                API Key
+                <span>API Key</span>{" "}
+                <a
+                  href={
+                    NETWORKS.find((network) => network.id === values.network)
+                      .site
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-blue-900"
+                >
+                  <div className="flex">
+                    <span>(</span>
+                    <span>Get one here</span>
+                    <ExternalLinkIcon />
+                    <span>)</span>
+                  </div>
+                </a>
               </label>
               <Field
                 id="apiKey"

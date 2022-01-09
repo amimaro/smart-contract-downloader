@@ -3,13 +3,21 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
 export const NETWORKS = [
-  { id: "mainnet", label: "Ethereum Mainnet" },
-  { id: "rinkeby", label: "Ethereum Rinkeby" },
-  { id: "ropsten", label: "Ethereum Ropsten" },
-  { id: "kovan", label: "Ethereum Kovan" },
-  { id: "goerli", label: "Ethereum Goerli" },
-  { id: "bsc", label: "Binance Smart Chain Mainnet" },
-  { id: "bscTest", label: "Binance Smart Chain Testnet" },
+  { id: "mainnet", label: "Ethereum Mainnet", site: "https://etherscan.io/" },
+  { id: "rinkeby", label: "Ethereum Rinkeby", site: "https://etherscan.io/" },
+  { id: "ropsten", label: "Ethereum Ropsten", site: "https://etherscan.io/" },
+  { id: "kovan", label: "Ethereum Kovan", site: "https://etherscan.io/" },
+  { id: "goerli", label: "Ethereum Goerli", site: "https://etherscan.io/" },
+  {
+    id: "bsc",
+    label: "Binance Smart Chain Mainnet",
+    site: "https://bscscan.com/",
+  },
+  {
+    id: "bscTest",
+    label: "Binance Smart Chain Testnet",
+    site: "https://bscscan.com/",
+  },
 ];
 
 export const getContractSourceCode = async (
