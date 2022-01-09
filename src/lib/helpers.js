@@ -19,16 +19,25 @@ export const getContractSourceCode = async (
   return await axios.get(networkRequests[network]);
 };
 
-export const parseSourceCodeObject = (sourceCode) => {
+export const parseSourceCodeObject = (sourceCode, network) => {
+  if (network.indexOf("bsc") >= 0) return JSON.parse(sourceCode);
   return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
 };
 
-export const getContractContentList = (sourceCodes) => {
+const getSourcesObject = (parsedSourceCode, network) => {
+  if (network.indexOf("bsc") >= 0) return Object.entries(parsedSourceCode);
+  return Object.entries(parsedSourceCode.sources);
+};
+
+export const getContractContentList = (sourceCodes, network) => {
   const contractContent = [];
   // is array?
   for (const sourceCode of sourceCodes) {
-    const parsedSourceCode = parseSourceCodeObject(sourceCode.SourceCode);
-    const sourceObjects = Object.entries(parsedSourceCode.sources).map(
+    const parsedSourceCode = parseSourceCodeObject(
+      sourceCode.SourceCode,
+      network
+    );
+    const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
       (sourceObject) => {
         return {
           path: sourceObject[0],

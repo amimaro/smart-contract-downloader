@@ -32,12 +32,13 @@ function App() {
         contractAddress
       );
       const sourceCodes = result.data.result;
-      const contractContents = getContractContentList(sourceCodes);
+      const contractContents = getContractContentList(sourceCodes, network);
       setContract({
         address: contractAddress,
         contents: contractContents,
       });
     } catch (e) {
+      console.error(e);
       errorChildRef.current.showNotification();
     }
   };
