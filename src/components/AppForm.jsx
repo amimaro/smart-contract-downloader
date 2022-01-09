@@ -119,7 +119,7 @@ export const AppForm = ({ submitForm }) => {
             <AppButton type="submit" isSubmitting={isSubmitting}>
               <div className="flex gap-2">
                 <DocumentIcon />
-                <span>Fetch Contract</span>
+                <span>Find Contract</span>
               </div>
             </AppButton>
           </div>
