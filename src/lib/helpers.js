@@ -39,23 +39,34 @@ const getSourcesObject = (parsedSourceCode, network) => {
   return Object.entries(parsedSourceCode.sources);
 };
 
+const isSingleFileContract = (sourceCode) => {
+  return sourceCode.indexOf("pragma") === 0;
+};
+
 export const getContractContentList = (sourceCodes, network) => {
   const contractContent = [];
   // is array?
   for (const sourceCode of sourceCodes) {
-    const parsedSourceCode = parseSourceCodeObject(
-      sourceCode.SourceCode,
-      network
-    );
-    const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
-      (sourceObject) => {
-        return {
-          path: sourceObject[0],
-          content: sourceObject[1].content,
-        };
-      }
-    );
-    contractContent.push(...sourceObjects);
+    if (isSingleFileContract(sourceCode.SourceCode)) {
+      contractContent.push({
+        path: "contract.sol",
+        content: sourceCode.SourceCode,
+      });
+    } else {
+      const parsedSourceCode = parseSourceCodeObject(
+        sourceCode.SourceCode,
+        network
+      );
+      const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
+        (sourceObject) => {
+          return {
+            path: sourceObject[0],
+            content: sourceObject[1].content,
+          };
+        }
+      );
+      contractContent.push(...sourceObjects);
+    }
   }
   return contractContent;
 };
