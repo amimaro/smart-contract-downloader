@@ -14,6 +14,7 @@ import GitHubButton from "react-github-btn";
 
 function defaultContractObj() {
   return {
+    name: "",
     address: "",
     contents: [],
   };
@@ -44,6 +45,7 @@ function App() {
       }
       const contractContents = getContractContentList(sourceCodes, network);
       setContract({
+        name: sourceCodes[0].ContractName,
         address: contractAddress,
         contents: contractContents,
       });
@@ -85,16 +87,22 @@ function App() {
           Follow @amimaro
         </GitHubButton>
       </div>
+      <div className="py-2"></div>
       <div className="flex justify-center w-full">
-        <div className="md:px-8 px-2 py-4 rounded-sm lg:w-2/5 md:w-3/5 w-full">
+        <div className="rounded-sm lg:w-2/5 md:w-3/5 w-full">
           <AppForm submitForm={fetchContract} />
         </div>
       </div>
       {contract.address.length > 0 && (
         <>
           <hr className="my-6" />
-          <div className="flex justify-end">
-            <AppButton onClick={downloadContract}>
+          <div className="flex items-center">
+            <div className="flex-grow">
+              {contract.name.length > 0 && (
+                <h2 className="font-bold">Name: {contract.name}</h2>
+              )}
+            </div>
+            <AppButton className="flex-shrink" onClick={downloadContract}>
               <div className="flex gap-2">
                 <DownloadIcon />
                 <span>Download Contract</span>
