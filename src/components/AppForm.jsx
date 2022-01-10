@@ -67,7 +67,7 @@ export const AppForm = ({ submitForm }) => {
                 id="apiKey"
                 type="text"
                 name="apiKey"
-                autocomplete="off"
+                autoComplete="off"
                 className={`border-2 w-full p-2 rounded-md text-center ${
                   errors.apiKey && touched.apiKey && errors.apiKey
                     ? "ring-2 ring-red-500"
@@ -107,7 +107,7 @@ export const AppForm = ({ submitForm }) => {
                 id="contractAddress"
                 type="text"
                 name="contractAddress"
-                autocomplete="off"
+                autoComplete="off"
                 className={`border-2 w-full p-2 rounded-md text-center ${
                   errors.contractAddress &&
                   touched.contractAddress &&
