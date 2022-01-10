@@ -9,9 +9,10 @@ export const AppPreviewContract = ({ contract, showNotification }) => {
           <div key={contractData.path}>
             <div className="flex flex-wrap gap-2 pb-2">
               <span className="font-semibold">
-                {index + 1}: {contractData.path}
+                {index + 1} of {contract.contents.length}: {contractData.path}
               </span>
               <button
+                className="text-blue-700"
                 onClick={() => {
                   showNotification();
                   copyToClipboard(contractData.content);
@@ -21,7 +22,7 @@ export const AppPreviewContract = ({ contract, showNotification }) => {
               </button>
             </div>
             <textarea
-              className="border-2 w-full h-40 p-2 focus:ring-4 rounded-md"
+              className="border-2 w-full h-40 p-2 focus:ring-4 rounded-md bg-gray-100"
               value={contractData.content}
               readOnly
             />
