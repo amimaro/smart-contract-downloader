@@ -1,8 +1,32 @@
-# Getting Started with Create React App
+# Smart Contract Downloader
+
+This is a smart contract downloader which uses Etherscan, PolygonScan and BSCScan API to get verified contracts source code.
+
+To use it you will need to get your own API key for the network your are using.
+
+After finding the desired contract you can download the package as a compressed zip file.
+
+[Checkout this video tutorial](https://youtube.com)
+
+Also feel free to open an issue for any feature request, bugs, etc.
+
+## Current Networks Available
+
+- Ethereum Mainnet
+- Rinkeby Testnet
+- Ropsten Testnet
+- Kovan Testnet
+- Goerli Testnet
+- Polygon Mainnet
+- Polygon Mumbai Testnet
+- Binance Smart Chain Mainnet
+- Binance Smart Chain Testnet
+
+## Development - Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -39,32 +63,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+MIT [LICENSE.md](LICENSE.md)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
 
-### Code Splitting
+Pull Requests are welcome.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork it
+2. Create your feature branch (`git checkout -b new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin new-feature`)
+5. Create new Pull Request
