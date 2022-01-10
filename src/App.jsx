@@ -82,7 +82,7 @@ function App() {
         </GitHubButton>
       </div>
       <div className="flex justify-center w-full">
-        <div className="border-2 md:px-8 px-2 py-4 rounded-sm lg:w-2/5 md:w-3/5 w-full">
+        <div className="md:px-8 px-2 py-4 rounded-sm lg:w-2/5 md:w-3/5 w-full">
           <AppForm submitForm={fetchContract} />
         </div>
       </div>
