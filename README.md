@@ -6,7 +6,7 @@ To use it you will need to get your own API key for the network your are using.
 
 After finding the desired contract you can download the package as a compressed zip file.
 
-[Checkout this video tutorial](https://youtube.com)
+[Checkout this video tutorial](https://youtu.be/LvJfhJU0yQg)
 
 Also feel free to open an issue for any feature request, bugs, etc.
 
