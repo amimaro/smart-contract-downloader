@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { NETWORKS } from "../common/lib/explorers";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
-import { NETWORKS } from "../common/lib/helpers";
 
 export const AppForm: React.FC<{
   submitForm: (network: string, contractAddres: string) => void;

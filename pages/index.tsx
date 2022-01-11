@@ -1,10 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRef, useState } from "react";
-import {
-  getContractContentList,
-  exportContractContentsToZip,
-} from "../common/lib/helpers";
+import { getContractContentList } from "../common/lib/helpers";
 import { AppCopiedToClipboardNotification } from "../components/AppCopiedToClipboardNotification";
 import { AppErrorNotification } from "../components/AppErrorNotification";
 import { AppForm } from "../components/AppForm";
@@ -13,6 +10,8 @@ import { DownloadIcon } from "../components/icons/DownloadIcon";
 import { AppPreviewContract } from "../components/AppPreviewContract";
 import dynamic from "next/dynamic";
 import axios from "axios";
+import { ContractObject } from "../common/types/contract";
+import { exportContractContentsToZip } from "../common/lib/exporters";
 
 const AppGithubButtons = dynamic<any>(
   () =>
@@ -31,11 +30,9 @@ function defaultContractObj() {
 }
 
 const Home: NextPage = () => {
-  const [contract, setContract] = useState<{
-    name: string;
-    address: string;
-    contents: any[];
-  }>(defaultContractObj());
+  const [contract, setContract] = useState<ContractObject>(
+    defaultContractObj()
+  );
   const clipboardChildRef: any = useRef();
   const errorChildRef: any = useRef();
 
@@ -45,7 +42,6 @@ const Home: NextPage = () => {
       const result = await axios.get(
         `./api/contract/${network}/${contractAddress}`
       );
-      console.log("result", result);
       const sourceCodes = result.data.result;
       if (sourceCodes === "Invalid API Key") {
         errorChildRef.current.showNotification("Invalid API Key");
