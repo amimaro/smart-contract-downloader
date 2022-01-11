@@ -2,8 +2,6 @@
 
 This is a smart contract downloader which uses Etherscan, PolygonScan and BSCScan API to get verified contracts source code.
 
-To use it you will need to get your own API key for the network your are using.
-
 After finding the desired contract you can download the package as a compressed zip file.
 
 [Checkout this video tutorial](https://youtu.be/LvJfhJU0yQg)
