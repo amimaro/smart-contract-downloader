@@ -2,15 +2,27 @@ import axios from "axios";
 
 export const NETWORKS = [
   { id: "ethmain", label: "Ethereum Mainnet", site: "https://etherscan.io/" },
-  { id: "rinkeby", label: "Rinkeby Testnet", site: "https://etherscan.io/" },
-  { id: "ropsten", label: "Ropsten Testnet", site: "https://etherscan.io/" },
-  { id: "kovan", label: "Kovan Testnet", site: "https://etherscan.io/" },
-  { id: "goerli", label: "Goerli Testnet", site: "https://etherscan.io/" },
+  {
+    id: "rinkeby",
+    label: "Rinkeby Testnet",
+    site: "https://rinkeby.etherscan.io/",
+  },
+  {
+    id: "ropsten",
+    label: "Ropsten Testnet",
+    site: "https://ropsten.etherscan.io/",
+  },
+  { id: "kovan", label: "Kovan Testnet", site: "https://kovan.etherscan.io/" },
+  {
+    id: "goerli",
+    label: "Goerli Testnet",
+    site: "https://goerli.etherscan.io/",
+  },
   { id: "polygon", label: "Polygon Mainnet", site: "https://polygonscan.com/" },
   {
     id: "polygonTest",
     label: "Polygon Mumbai Testnet",
-    site: "https://polygonscan.com/",
+    site: "https://mumbai.polygonscan.com/",
   },
   {
     id: "bsc",
@@ -20,7 +32,7 @@ export const NETWORKS = [
   {
     id: "bscTest",
     label: "Binance Smart Chain Testnet",
-    site: "https://bscscan.com/",
+    site: "https://testnet.bscscan.com/",
   },
 ];
 

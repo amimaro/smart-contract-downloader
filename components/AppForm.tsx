@@ -3,10 +3,12 @@ import { NETWORKS } from "../common/lib/explorers";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
+import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
 
 export const AppForm: React.FC<{
   submitForm: (network: string, contractAddres: string) => void;
 }> = ({ submitForm }) => {
+  const networkList: any[] = NETWORKS;
   return (
     <Formik
       initialValues={{
@@ -31,12 +33,28 @@ export const AppForm: React.FC<{
         })();
       }}
     >
-      {({ isSubmitting, errors, touched }) => (
+      {({ isSubmitting, errors, touched, values }) => (
         <Form>
           <div className="flex flex-col gap-4 items-center">
             <div className="w-full flex flex-col gap-2">
               <label className="font-semibold text-center" htmlFor="apiKey">
-                Network
+                <span>Network</span>{" "}
+                <a
+                  href={
+                    networkList.find((network) => network.id === values.network)
+                      .site
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-blue-900 text-xs"
+                >
+                  <div className="flex">
+                    <span>(</span>
+                    <span>Explore</span>
+                    <ExternalLinkIcon />
+                    <span>)</span>
+                  </div>
+                </a>
               </label>
               <AppSelect name="network">
                 {NETWORKS.map((network) => (
