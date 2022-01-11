@@ -43,7 +43,7 @@ export const AppForm = ({ submitForm }) => {
       {({ isSubmitting, errors, touched, values }) => (
         <Form>
           <div className="flex flex-col gap-4 items-center">
-            <div className="w-full flex flex-col gap-2">
+            <div className="w-full flex-col gap-2 hidden">
               <label className="font-semibold text-center" htmlFor="apiKey">
                 <span>API Key</span>{" "}
                 <a
