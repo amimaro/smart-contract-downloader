@@ -3,7 +3,7 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
 export const NETWORKS = [
-  { id: "mainnet", label: "Ethereum Mainnet", site: "https://etherscan.io/" },
+  { id: "ethmain", label: "Ethereum Mainnet", site: "https://etherscan.io/" },
   { id: "rinkeby", label: "Rinkeby Testnet", site: "https://etherscan.io/" },
   { id: "ropsten", label: "Ropsten Testnet", site: "https://etherscan.io/" },
   { id: "kovan", label: "Kovan Testnet", site: "https://etherscan.io/" },
@@ -27,12 +27,12 @@ export const NETWORKS = [
 ];
 
 export const getContractSourceCode = async (
-  apiKey,
-  network,
-  contractAddress
+  apiKey: string,
+  network: string,
+  contractAddress: string
 ) => {
-  const networkRequests = {
-    mainnet: `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+  const networkRequests: any = {
+    ethmain: `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     rinkeby: `https://api-rinkeby.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     ropsten: `https://api-ropsten.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     kovan: `https://api-kovan.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
@@ -45,25 +45,26 @@ export const getContractSourceCode = async (
   return await axios.get(networkRequests[network]);
 };
 
-const parseSourceCodeObject = (sourceCode, network) => {
+const parseSourceCodeObject = (sourceCode: any, network: string) => {
   if (network.indexOf("bsc") >= 0) return JSON.parse(sourceCode);
   return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
 };
 
-const getSourcesObject = (parsedSourceCode, network) => {
+const getSourcesObject = (parsedSourceCode: any, network: string) => {
   if (network.indexOf("bsc") >= 0) return Object.entries(parsedSourceCode);
   return Object.entries(parsedSourceCode.sources);
 };
 
-const isSingleFileContract = (sourceCode) => {
+const isSingleFileContract = (sourceCode: string) => {
   return (
     sourceCode.indexOf("pragma") === 0 ||
     sourceCode.indexOf("//") === 0 ||
+    sourceCode.indexOf("\r\n") === 0 ||
     sourceCode.indexOf("/*") === 0
   );
 };
 
-export const getContractContentList = (sourceCodes, network) => {
+export const getContractContentList = (sourceCodes: any, network: string) => {
   const contractContent = [];
   // is array?
   for (const sourceCode of sourceCodes) {
@@ -78,7 +79,7 @@ export const getContractContentList = (sourceCodes, network) => {
         network
       );
       const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
-        (sourceObject) => {
+        (sourceObject: any) => {
           return {
             path: sourceObject[0],
             content: sourceObject[1].content,
@@ -92,8 +93,8 @@ export const getContractContentList = (sourceCodes, network) => {
 };
 
 export const exportContractContentsToZip = (
-  contractContents,
-  contractAddress
+  contractContents: any,
+  contractAddress: string
 ) => {
   var zip = new JSZip();
   for (const contractContent of contractContents) {
@@ -104,6 +105,43 @@ export const exportContractContentsToZip = (
   });
 };
 
-export const copyToClipboard = (data) => {
+export const copyToClipboard = (data: string) => {
   navigator.clipboard.writeText(data);
+};
+
+export const getApiKeyByNetwork = (network: string) => {
+  let apiKey;
+  switch (network) {
+    case "ethmain":
+      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      break;
+    case "rinkeby":
+      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      break;
+    case "ropsten":
+      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      break;
+    case "kovan":
+      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      break;
+    case "goerli":
+      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      break;
+    case "polygon":
+      apiKey = process.env.APP_APIKEY_POLYGONSCAN;
+      break;
+    case "polygonTest":
+      apiKey = process.env.APP_APIKEY_POLYGONSCAN;
+      break;
+    case "bsc":
+      apiKey = process.env.APP_APIKEY_BSCSCAN;
+      break;
+    case "bscTest":
+      apiKey = process.env.APP_APIKEY_BSCSCAN;
+      break;
+    default:
+      apiKey = null;
+      break;
+  }
+  return apiKey;
 };

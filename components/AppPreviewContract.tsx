@@ -1,7 +1,11 @@
 import { DuplicateIcon } from "./icons/DuplicateIcon";
-import { copyToClipboard } from "../lib/helpers";
+import { copyToClipboard } from "../common/lib/helpers";
+import { ContractObject } from "../common/types/contract";
 
-export const AppPreviewContract = ({ contract, showNotification }) => {
+export const AppPreviewContract: React.FC<{
+  contract: ContractObject;
+  showNotification: () => void;
+}> = ({ contract, showNotification }) => {
   return (
     <div className="flex flex-col gap-3">
       {contract.contents.map((contractData, index) => {
