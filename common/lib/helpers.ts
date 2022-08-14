@@ -12,7 +12,14 @@ const isSymbolObject = (network: string) => {
 };
 
 const parseSourceCodeObject = (sourceCode: any, network: string) => {
-  if (isSymbolObject(network)) return JSON.parse(sourceCode);
+  if (isSymbolObject(network)) {
+    const doubleCurlyBracesPattern = /^[{]{2}(.|\r\n)*[}]{2}$/gm;
+    if (doubleCurlyBracesPattern.test(sourceCode)) {
+      sourceCode = sourceCode.substring(1, sourceCode.length - 1);
+      return JSON.parse(sourceCode).sources;
+    }
+    return JSON.parse(sourceCode);
+  }
   return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
 };
 
@@ -35,6 +42,7 @@ export const getContractContentList = (sourceCodes: any, network: string) => {
         sourceCode.SourceCode,
         network
       );
+      console.log("🚀 - parsedSourceCode", parsedSourceCode);
       const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
         (sourceObject: any) => {
           return {
