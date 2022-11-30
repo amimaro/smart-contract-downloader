@@ -34,6 +34,21 @@ export const NETWORKS = [
     label: "Binance Smart Chain Testnet",
     site: "https://testnet.bscscan.com/",
   },
+  {
+    id: "arbitrum one",
+    label: "Arbitrum One Mainnet",
+    site: "https://arbiscan.io/",
+  },
+  {
+    id: "arbitrum nova",
+    label: "Arbitrum Nova Mainnet",
+    site: "https://nova.arbiscan.io/"
+  },
+  {
+    id: "arbitrum goerli",
+    label: "Arbitrum Goerli Testnet",
+    site: "https://goerli.arbiscan.io/",
+  },
 ];
 
 export const getContractSourceCode = async (
@@ -51,6 +66,9 @@ export const getContractSourceCode = async (
     polygonTest: `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     bsc: `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     bscTest: `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    'arbitrum one': `https://api.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    'arbitrum nova': `https://api-nova.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    'arbitrum goerli': `https://api-goerli.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
   };
   return await axios.get(networkRequests[network]);
 };
@@ -84,6 +102,15 @@ export const getApiKeyByNetwork = (network: string) => {
       break;
     case "bscTest":
       apiKey = process.env.APP_APIKEY_BSCSCAN;
+      break;
+    case "arbitrum one":
+      apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
+      break;
+    case "arbitrum nova":
+      apiKey = process.env.APP_APIKEY_ARBITRUMNOVASCAN;
+      break;
+    case "arbitrum goerli":
+      apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
       break;
     default:
       apiKey = null;

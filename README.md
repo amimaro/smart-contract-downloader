@@ -17,6 +17,9 @@ Also feel free to open an issue for any feature request, bugs, etc.
 - Polygon Mumbai Testnet
 - Binance Smart Chain Mainnet
 - Binance Smart Chain Testnet
+- Arbitrum One Mainnet
+- Arbitrum Nova Mainnet
+- Arbitrum Goerli Testnet
 
 ## Development - Getting Started
 
