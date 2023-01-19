@@ -20,6 +20,8 @@ Also feel free to open an issue for any feature request, bugs, etc.
 - Arbitrum One Mainnet
 - Arbitrum Nova Mainnet
 - Arbitrum Goerli Testnet
+- Fantom Mainnet
+- Fantom Testnet
 
 ## Development - Getting Started
 
