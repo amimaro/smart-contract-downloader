@@ -124,6 +124,12 @@ export const getApiKeyByNetwork = (network: string) => {
     case "arbitrum goerli":
       apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
       break;
+    case "fantom":
+      apiKey = process.env.APP_APIKEY_FTMSCAN;
+      break;
+    case "fantomTest":
+      apiKey = process.env.APP_APIKEY_FTMSCAN;
+      break;
     default:
       apiKey = null;
       break;
