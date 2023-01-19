@@ -89,46 +89,46 @@ export const getApiKeyByNetwork = (network: string) => {
   let apiKey;
   switch (network) {
     case "ethmain":
-      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      apiKey = process.env.APIKEY_ETHERSCAN;
       break;
     case "rinkeby":
-      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      apiKey = process.env.APIKEY_ETHERSCAN;
       break;
     case "ropsten":
-      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      apiKey = process.env.APIKEY_ETHERSCAN;
       break;
     case "kovan":
-      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      apiKey = process.env.APIKEY_ETHERSCAN;
       break;
     case "goerli":
-      apiKey = process.env.APP_APIKEY_ETHERSCAN;
+      apiKey = process.env.APIKEY_ETHERSCAN;
       break;
     case "polygon":
-      apiKey = process.env.APP_APIKEY_POLYGONSCAN;
+      apiKey = process.env.APIKEY_POLYGONSCAN;
       break;
     case "polygonTest":
-      apiKey = process.env.APP_APIKEY_POLYGONSCAN;
+      apiKey = process.env.APIKEY_POLYGONSCAN;
       break;
     case "bsc":
-      apiKey = process.env.APP_APIKEY_BSCSCAN;
+      apiKey = process.env.APIKEY_BSCSCAN;
       break;
     case "bscTest":
-      apiKey = process.env.APP_APIKEY_BSCSCAN;
+      apiKey = process.env.APIKEY_BSCSCAN;
       break;
     case "arbitrum one":
-      apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
+      apiKey = process.env.APIKEY_ARBITRUMSCAN;
       break;
     case "arbitrum nova":
-      apiKey = process.env.APP_APIKEY_ARBITRUMNOVASCAN;
+      apiKey = process.env.APIKEY_ARBITRUMNOVASCAN;
       break;
     case "arbitrum goerli":
-      apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
+      apiKey = process.env.APIKEY_ARBITRUMSCAN;
       break;
     case "fantom":
-      apiKey = process.env.APP_APIKEY_FTMSCAN;
+      apiKey = process.env.APIKEY_FTMSCAN;
       break;
     case "fantomTest":
-      apiKey = process.env.APP_APIKEY_FTMSCAN;
+      apiKey = process.env.APIKEY_FTMSCAN;
       break;
     default:
       apiKey = null;

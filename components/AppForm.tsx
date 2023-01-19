@@ -12,13 +12,13 @@ export const AppForm: React.FC<{
   return (
     <Formik
       initialValues={{
-        network: process.env.APP_NETWORK || "ethmain",
-        contractAddress: process.env.APP_CONTRACT_ADDRESS || "",
+        network: process.env.NEXT_PUBLIC_DEFAULT_NETWORK || "ethmain",
+        contractAddress: process.env.NEXT_PUBLIC_TEST_CONTRACT_ADDRESS || "",
       }}
       validate={(values) => {
         const errors: { apiKey?: string; contractAddress?: string } = {};
         if (!values.contractAddress) {
-          errors.contractAddress = "Contract address is Required";
+          errors.contractAddress = "Contract address is required";
         } else if (values.contractAddress.length !== 42) {
           errors.contractAddress = "Invalid Contract Address";
         }
