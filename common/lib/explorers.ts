@@ -49,6 +49,16 @@ export const NETWORKS = [
     label: "Arbitrum Goerli Testnet",
     site: "https://goerli.arbiscan.io/",
   },
+  {
+    id: "fantom",
+    label: "Fantom Mainnet",
+    site: "https://ftmscan.com/",
+  },
+  {
+    id: "fantomTest",
+    label: "Fantom Testnet",
+    site: "https://testnet.ftmscan.com/",
+  },
 ];
 
 export const getContractSourceCode = async (
@@ -69,6 +79,8 @@ export const getContractSourceCode = async (
     'arbitrum one': `https://api.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     'arbitrum nova': `https://api-nova.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
     'arbitrum goerli': `https://api-goerli.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    fantom: `https://api.ftmscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
+    fantomTest: `https://api-testnet.ftmscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`,
   };
   return await axios.get(networkRequests[network]);
 };
@@ -111,6 +123,12 @@ export const getApiKeyByNetwork = (network: string) => {
       break;
     case "arbitrum goerli":
       apiKey = process.env.APP_APIKEY_ARBITRUMSCAN;
+      break;
+    case "fantom":
+      apiKey = process.env.APP_APIKEY_FTMSCAN;
+      break;
+    case "fantomTest":
+      apiKey = process.env.APP_APIKEY_FTMSCAN;
       break;
     default:
       apiKey = null;
