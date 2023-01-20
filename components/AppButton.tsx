@@ -1,4 +1,4 @@
-import { cn } from "../common/lib/helpers";
+import { cn } from "../utils/helpers";
 
 export const AppButton: React.FC<{
   type?: "button" | "submit" | "reset" | undefined;

@@ -1,5 +1,5 @@
 import { DuplicateIcon } from "./icons/DuplicateIcon";
-import { copyToClipboard } from "../common/lib/helpers";
+import { copyToClipboard } from "../utils/helpers";
 import { ContractObject } from "../types";
 
 export const AppPreviewContract: React.FC<{

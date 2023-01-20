@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getContractSourceCode } from "../../../common/lib/explorers";
+import { NETWORKS } from "../../../networks";
 
 type Data = {
   name: string;
@@ -18,7 +19,7 @@ export default async function handler(
   const [network, contractAddress] = data;
 
   try {
-    const result = await getContractSourceCode(network, contractAddress);
+    const result = await axios.get(NETWORKS[network].endpoint(contractAddress));
     res.status(200).json(result.data);
   } catch (e) {
     res.status(400).json(e);
