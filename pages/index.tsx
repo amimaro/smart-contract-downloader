@@ -10,7 +10,7 @@ import { DownloadIcon } from "../components/icons/DownloadIcon";
 import { AppPreviewContract } from "../components/AppPreviewContract";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import { ContractObject } from "../common/types/contract";
+import { ContractObject } from "../types";
 import { exportContractContentsToZip } from "../common/lib/exporters";
 
 const AppGithubButtons = dynamic<any>(

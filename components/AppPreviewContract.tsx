@@ -1,6 +1,6 @@
 import { DuplicateIcon } from "./icons/DuplicateIcon";
 import { copyToClipboard } from "../common/lib/helpers";
-import { ContractObject } from "../common/types/contract";
+import { ContractObject } from "../types";
 
 export const AppPreviewContract: React.FC<{
   contract: ContractObject;
