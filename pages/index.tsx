@@ -1,25 +1,17 @@
 import axios from "axios";
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRef, useState } from "react";
 import { AppButton } from "../components/AppButton";
 import { AppCopiedToClipboardNotification } from "../components/AppCopiedToClipboardNotification";
 import { AppErrorNotification } from "../components/AppErrorNotification";
 import { AppForm } from "../components/AppForm";
+import { AppGithubButtons } from "../components/AppGithubButtons";
 import { AppPreviewContract } from "../components/AppPreviewContract";
 import { DownloadIcon } from "../components/icons/DownloadIcon";
 import { ContractObject } from "../types";
 import { exportContractContentsToZip } from "../utils/exporters";
 import { getContractContentList } from "../utils/helpers";
-
-const AppGithubButtons = dynamic<any>(
-  () =>
-    import("../components/AppGithubButtons").then(
-      (mod) => mod.AppGithubButtons
-    ),
-  { ssr: false }
-);
 
 const Home: NextPage = () => {
   const [contract, setContract] = useState<ContractObject>({

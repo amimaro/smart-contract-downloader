@@ -1,4 +1,9 @@
-import GitHubButton from "react-github-btn";
+import dynamic from "next/dynamic";
+
+const GitHubButton = dynamic<any>(
+  () => import("react-github-btn").then((mod) => mod.default),
+  { ssr: false }
+);
 
 export const AppGithubButtons: React.FC = () => {
   return (
