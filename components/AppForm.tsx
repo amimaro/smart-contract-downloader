@@ -23,12 +23,9 @@ export const AppForm: React.FC<{
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values) => {
         (async () => {
-          await submitForm(values.network, values.contractAddress);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 400);
+          return submitForm(values.network, values.contractAddress);
         })();
       }}
     >
