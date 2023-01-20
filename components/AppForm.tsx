@@ -1,5 +1,5 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { NETWORKS } from "../common/lib/explorers";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { NETWORKS } from "../networks";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
@@ -8,7 +8,6 @@ import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
 export const AppForm: React.FC<{
   submitForm: (network: string, contractAddres: string) => void;
 }> = ({ submitForm }) => {
-  const networkList: any[] = NETWORKS;
   return (
     <Formik
       initialValues={{
@@ -40,10 +39,7 @@ export const AppForm: React.FC<{
               <label className="font-semibold text-center" htmlFor="apiKey">
                 <span>Network</span>{" "}
                 <a
-                  href={
-                    networkList.find((network) => network.id === values.network)
-                      .site
-                  }
+                  href={NETWORKS[values.network].url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block text-blue-900 text-xs"
@@ -57,13 +53,13 @@ export const AppForm: React.FC<{
                 </a>
               </label>
               <AppSelect name="network">
-                {NETWORKS.map((network) => (
+                {Object.entries(NETWORKS).map(([networkId, networkOption]) => (
                   <option
-                    key={network.id}
-                    value={network.id}
+                    key={networkId}
+                    value={networkId}
                     className="text-center"
                   >
-                    {network.label}
+                    {networkOption.label}
                   </option>
                 ))}
               </AppSelect>

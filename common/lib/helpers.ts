@@ -42,7 +42,6 @@ export const getContractContentList = (sourceCodes: any, network: string) => {
         sourceCode.SourceCode,
         network
       );
-      console.log("🚀 - parsedSourceCode", parsedSourceCode);
       const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
         (sourceObject: any) => {
           return {
