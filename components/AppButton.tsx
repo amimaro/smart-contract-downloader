@@ -22,7 +22,7 @@ export const AppButton: React.FC<{
         "px-4 py-2 min-w-max text-white font-semibold tracking-wider rounded-md shadow-md",
         loading
           ? "bg-gray-700 cursor-wait"
-          : "bg-blue-700 cursor-pointer active:bg-blue-800 active:shadow-none"
+          : "bg-blue-700 active:bg-blue-800 active:shadow-none"
       )}
       onClick={onClick}
     >
