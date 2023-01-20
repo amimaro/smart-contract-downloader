@@ -59,3 +59,7 @@ export const getContractContentList = (sourceCodes: any, network: string) => {
 export const copyToClipboard = (data: string) => {
   navigator.clipboard.writeText(data);
 };
+
+export const cn = (...classes: any[]) => {
+  return classes.filter(Boolean).join(" ");
+};

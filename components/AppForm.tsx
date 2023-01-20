@@ -23,9 +23,11 @@ export const AppForm: React.FC<{
         }
         return errors;
       }}
-      onSubmit={(values) => {
+      onSubmit={(values, { setSubmitting }) => {
         (async () => {
-          return submitForm(values.network, values.contractAddress);
+          await submitForm(values.network, values.contractAddress);
+          setSubmitting(false);
+          return null;
         })();
       }}
     >
@@ -87,7 +89,7 @@ export const AppForm: React.FC<{
                 className="text-xs text-red-500 pl-2"
               />
             </div>
-            <AppButton type="submit" isSubmitting={isSubmitting}>
+            <AppButton type="submit" loading={isSubmitting}>
               <div className="flex gap-2">
                 <DocumentIcon />
                 <span>Find Contract</span>

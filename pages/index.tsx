@@ -21,23 +21,16 @@ const AppGithubButtons = dynamic<any>(
   { ssr: false }
 );
 
-function defaultContractObj() {
-  return {
+const Home: NextPage = () => {
+  const [contract, setContract] = useState<ContractObject>({
     name: "",
     address: "",
     contents: [],
-  };
-}
-
-const Home: NextPage = () => {
-  const [contract, setContract] = useState<ContractObject>(
-    defaultContractObj()
-  );
+  });
   const clipboardChildRef: any = useRef();
   const errorChildRef: any = useRef();
 
   const fetchContract = async (network: string, contractAddress: string) => {
-    setContract(defaultContractObj());
     try {
       const result = await axios.get(
         `./api/contract/${network}/${contractAddress}`

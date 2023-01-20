@@ -15,8 +15,8 @@ export default async function handler(
     res.status(400).json({ message: "Invalid request" });
   }
 
-  const network = data[0];
-  const contractAddress: string = data[1];
+  const [network, contractAddress] = data;
+
   try {
     const result = await getContractSourceCode(network, contractAddress);
     res.status(200).json(result.data);
