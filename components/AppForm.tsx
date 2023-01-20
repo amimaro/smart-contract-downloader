@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { NETWORKS } from "../networks";
+import { cn } from "../utils/helpers";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
 import { DocumentIcon } from "./icons/DocumentIcon";
@@ -41,7 +42,7 @@ export const AppForm: React.FC<{
                   href={NETWORKS[values.network].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-blue-900 text-xs"
+                  className="inline-block text-xs"
                 >
                   <div className="flex">
                     <span>(</span>
@@ -51,17 +52,15 @@ export const AppForm: React.FC<{
                   </div>
                 </a>
               </label>
-              <AppSelect name="network">
-                {Object.entries(NETWORKS).map(([networkId, networkOption]) => (
-                  <option
-                    key={networkId}
-                    value={networkId}
-                    className="text-center"
-                  >
-                    {networkOption.label}
-                  </option>
-                ))}
-              </AppSelect>
+              <AppSelect
+                name="network"
+                options={Object.entries(NETWORKS).map(
+                  ([networkId, networkOption]) => ({
+                    value: networkId,
+                    label: networkOption.label,
+                  })
+                )}
+              />
             </div>
             <div className="w-full flex flex-col gap-2">
               <label
@@ -75,18 +74,19 @@ export const AppForm: React.FC<{
                 type="text"
                 name="contractAddress"
                 autoComplete="off"
-                className={`border-2 w-full p-2 rounded-md text-center ${
+                className={cn(
+                  "bg-inherit text-inherit border-2 w-full p-2 rounded-md text-center",
                   errors.contractAddress &&
-                  touched.contractAddress &&
-                  errors.contractAddress
+                    touched.contractAddress &&
+                    errors.contractAddress
                     ? "ring-2 ring-red-500"
                     : "focus:ring-2 ring-blue-500"
-                }`}
+                )}
               />
               <ErrorMessage
                 name="contractAddress"
                 component="div"
-                className="text-xs text-red-500 pl-2"
+                className="text-sm text-red-500 pl-2"
               />
             </div>
             <AppButton type="submit" loading={isSubmitting}>

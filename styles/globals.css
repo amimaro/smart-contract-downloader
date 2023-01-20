@@ -1,11 +1,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import 'animate.css';
+@import "animate.css";
 
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
+  @apply w-full h-full font-mono bg-slate-700 text-slate-100;
 }

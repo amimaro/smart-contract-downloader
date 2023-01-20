@@ -26,7 +26,7 @@ export const AppPreviewContract: React.FC<{
               </button>
             </div>
             <textarea
-              className="border-2 w-full h-40 p-2 focus:ring-4 rounded-md bg-gray-100"
+              className="bg-inherit text-inherit border-2 w-full h-40 p-2 focus:ring-4 rounded-md bg-gray-100"
               value={contractData.content}
               readOnly
             />
