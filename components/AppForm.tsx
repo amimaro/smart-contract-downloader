@@ -1,108 +1,92 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { NETWORKS } from "../common/lib/explorers";
+import { DocumentIcon } from "@heroicons/react/20/solid";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { NETWORKS } from "../networks";
+import { cn } from "../utils/helpers";
+import { useAppContext } from "../utils/useAppContext";
 import { AppButton } from "./AppButton";
 import { AppSelect } from "./AppSelect";
-import { DocumentIcon } from "./icons/DocumentIcon";
-import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
+import ExternalLink from "./ExternalLink";
 
-export const AppForm: React.FC<{
-  submitForm: (network: string, contractAddres: string) => void;
-}> = ({ submitForm }) => {
-  const networkList: any[] = NETWORKS;
+export default function AppForm() {
+  const { fetchContract } = useAppContext();
   return (
-    <Formik
-      initialValues={{
-        network: process.env.APP_NETWORK || "ethmain",
-        contractAddress: process.env.APP_CONTRACT_ADDRESS || "",
-      }}
-      validate={(values) => {
-        const errors: { apiKey?: string; contractAddress?: string } = {};
-        if (!values.contractAddress) {
-          errors.contractAddress = "Contract address is Required";
-        } else if (values.contractAddress.length !== 42) {
-          errors.contractAddress = "Invalid Contract Address";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        (async () => {
-          await submitForm(values.network, values.contractAddress);
-          setTimeout(() => {
+    <div className="w-full">
+      <Formik
+        initialValues={{
+          network: process.env.NEXT_PUBLIC_DEFAULT_NETWORK || "ethmain",
+          contractAddress: process.env.NEXT_PUBLIC_TEST_CONTRACT_ADDRESS || "",
+        }}
+        validate={(values) => {
+          const errors: { apiKey?: string; contractAddress?: string } = {};
+          if (!values.contractAddress) {
+            errors.contractAddress = "Contract address is required";
+          } else if (values.contractAddress.length !== 42) {
+            errors.contractAddress = "Invalid Contract Address";
+          }
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          (async () => {
+            await fetchContract(values.network, values.contractAddress);
             setSubmitting(false);
-          }, 400);
-        })();
-      }}
-    >
-      {({ isSubmitting, errors, touched, values }) => (
-        <Form>
-          <div className="flex flex-col gap-4 items-center">
-            <div className="w-full flex flex-col gap-2">
-              <label className="font-semibold text-center" htmlFor="apiKey">
-                <span>Network</span>{" "}
-                <a
-                  href={
-                    networkList.find((network) => network.id === values.network)
-                      .site
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-blue-900 text-xs"
-                >
-                  <div className="flex">
-                    <span>(</span>
-                    <span>Explore</span>
-                    <ExternalLinkIcon />
-                    <span>)</span>
-                  </div>
-                </a>
-              </label>
-              <AppSelect name="network">
-                {NETWORKS.map((network) => (
-                  <option
-                    key={network.id}
-                    value={network.id}
-                    className="text-center"
-                  >
-                    {network.label}
-                  </option>
-                ))}
-              </AppSelect>
-            </div>
-            <div className="w-full flex flex-col gap-2">
-              <label
-                className="font-semibold text-center"
-                htmlFor="contractAddress"
-              >
-                Contract Address
-              </label>
-              <Field
-                id="contractAddress"
-                type="text"
-                name="contractAddress"
-                autoComplete="off"
-                className={`border-2 w-full p-2 rounded-md text-center ${
-                  errors.contractAddress &&
-                  touched.contractAddress &&
-                  errors.contractAddress
-                    ? "ring-2 ring-red-500"
-                    : "focus:ring-2 ring-blue-500"
-                }`}
-              />
-              <ErrorMessage
-                name="contractAddress"
-                component="div"
-                className="text-xs text-red-500 pl-2"
-              />
-            </div>
-            <AppButton type="submit" isSubmitting={isSubmitting}>
-              <div className="flex gap-2">
-                <DocumentIcon />
-                <span>Find Contract</span>
+            return null;
+          })();
+        }}
+      >
+        {({ isSubmitting, errors, touched, values }) => (
+          <Form>
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex w-full flex-col">
+                <ExternalLink href={NETWORKS[values.network].url}>
+                  <span>Blockchain explorer</span>
+                </ExternalLink>
+                <AppSelect
+                  name="network"
+                  options={Object.entries(NETWORKS).map(
+                    ([networkId, networkOption]) => ({
+                      value: networkId,
+                      label: networkOption.label,
+                    })
+                  )}
+                />
               </div>
-            </AppButton>
-          </div>
-        </Form>
-      )}
-    </Formik>
+              <div className="flex w-full flex-col">
+                <label className=" font-semibold" htmlFor="contractAddress">
+                  Contract address
+                </label>
+                <Field
+                  id="contractAddress"
+                  type="text"
+                  name="contractAddress"
+                  autoComplete="off"
+                  className={cn(
+                    "w-full rounded-md border-2 bg-inherit p-2",
+                    errors.contractAddress &&
+                      touched.contractAddress &&
+                      errors.contractAddress
+                      ? "ring-2 ring-error-500"
+                      : "outline-action-300"
+                  )}
+                />
+                <ErrorMessage
+                  name="contractAddress"
+                  component="div"
+                  className="pl-2 pt-2 text-sm text-error-500"
+                />
+              </div>
+              <div className="pt-2">
+                <AppButton
+                  type="submit"
+                  loading={isSubmitting}
+                  icon={<DocumentIcon width={20} />}
+                >
+                  Find contract
+                </AppButton>
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
-};
+}

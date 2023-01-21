@@ -42,7 +42,6 @@ export const getContractContentList = (sourceCodes: any, network: string) => {
         sourceCode.SourceCode,
         network
       );
-      console.log("🚀 - parsedSourceCode", parsedSourceCode);
       const sourceObjects = getSourcesObject(parsedSourceCode, network).map(
         (sourceObject: any) => {
           return {
@@ -59,4 +58,8 @@ export const getContractContentList = (sourceCodes: any, network: string) => {
 
 export const copyToClipboard = (data: string) => {
   navigator.clipboard.writeText(data);
+};
+
+export const cn = (...classes: any[]) => {
+  return classes.filter(Boolean).join(" ");
 };
