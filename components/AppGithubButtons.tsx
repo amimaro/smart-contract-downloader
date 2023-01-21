@@ -7,7 +7,7 @@ const GitHubButton = dynamic<any>(
 
 export const AppGithubButtons: React.FC = () => {
   return (
-    <div className="flex justify-center gap-4 pb-2">
+    <div className="flex gap-4">
       <GitHubButton
         href="https://github.com/amimaro/smart-contract-downloader"
         data-show-count="true"

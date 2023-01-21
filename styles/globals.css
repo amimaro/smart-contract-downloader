@@ -3,8 +3,20 @@
 @import "tailwindcss/utilities";
 @import "animate.css";
 
+@layer base {
+  h1 {
+    @apply text-xl font-semibold tracking-widest md:text-2xl;
+  }
+  h2 {
+    @apply text-lg font-semibold tracking-widest md:text-xl;
+  }
+  a {
+    @apply text-action-400 hover:text-action-500;
+  }
+}
+
 html,
 body,
-#root {
-  @apply w-full h-full font-mono bg-slate-700 text-slate-100;
+#__next {
+  @apply h-full w-full bg-app-900 font-mono text-app-50;
 }

@@ -4,29 +4,34 @@ export const AppButton: React.FC<{
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: (e: any) => void;
   loading?: boolean;
+  icon?: any;
   children: any;
-  className?: string;
 }> = ({
   type = "button",
   onClick = () => {},
   loading = false,
+  icon,
   children,
-  className,
 }) => {
   return (
     <button
       type={type}
       disabled={loading}
       className={cn(
-        className,
-        "px-4 py-2 min-w-max text-white font-semibold tracking-wider rounded-md shadow-md",
+        "bg-action-500 text-action-100",
+        "min-w-max rounded-md px-4 py-2 font-semibold tracking-wider shadow-md",
         loading
-          ? "bg-gray-700 cursor-wait"
-          : "bg-blue-700 active:bg-blue-800 active:shadow-none"
+          ? "cursor-wait opacity-50"
+          : "active:opacity-90 active:shadow-none"
       )}
       onClick={onClick}
     >
-      {children}
+      <div className={cn("flex")}>
+        {icon}
+        <span className={cn("pl-2", children?.props?.className)}>
+          {children}
+        </span>
+      </div>
     </button>
   );
 };
