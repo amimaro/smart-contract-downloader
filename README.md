@@ -6,7 +6,13 @@ After finding the desired contract you can download the package as a compressed 
 
 Also feel free to open an issue for any feature request, bugs, etc.
 
-## Current Networks Available
+## Adding a new network
+
+Edit [`networks.ts`](https://github.com/amimaro/smart-contract-downloader/blob/main/networks.ts) file to add a new blockchain explorer option.
+It is not necessary to fill in all the fields unless you know the API and want to do your own tests.
+Otherwise, you can open an issue with the address of the blockchain to be added.
+
+## Current networks available
 
 - Ethereum Mainnet
 - Rinkeby Testnet
@@ -23,7 +29,7 @@ Also feel free to open an issue for any feature request, bugs, etc.
 - Fantom Mainnet
 - Fantom Testnet
 
-## Development - Getting Started
+## Development - Getting started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
