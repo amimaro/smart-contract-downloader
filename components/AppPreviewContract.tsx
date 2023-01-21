@@ -31,7 +31,7 @@ export default function AppPreviewContract() {
           </AppButton>
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="mb-20 flex flex-col gap-4">
         {contract.contents.map((contractData, index) => {
           return (
             <div key={contractData.path}>

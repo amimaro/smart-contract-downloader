@@ -15,7 +15,6 @@ export const Notification = forwardRef((_props, ref) => {
       message = "Ops, something went wront!",
       type = "success",
     }) {
-      console.log("🚀 - message", message);
       setMessage(message);
       setCopied(true);
       setAnimation(animationIn);

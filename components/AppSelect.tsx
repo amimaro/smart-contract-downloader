@@ -14,12 +14,13 @@ export const AppSelect = ({ name, options }: AppSelectProps) => {
   return (
     <Listbox
       name={name}
+      value={field.value}
       onChange={(value: string) => {
         field.onChange({ target: { value, name } });
       }}
     >
       <div className="relative mt-1">
-        <Listbox.Button className="relative w-full cursor-default rounded-md border-2 bg-inherit p-2 text-left text-inherit">
+        <Listbox.Button className="relative w-full cursor-default rounded-md border-2 bg-app-800 p-2 text-left text-inherit">
           <span className="block truncate">
             {options.find((option) => option.value === field.value)!.label}
           </span>

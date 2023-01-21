@@ -60,7 +60,7 @@ export default function AppForm() {
                   name="contractAddress"
                   autoComplete="off"
                   className={cn(
-                    "w-full rounded-md border-2 bg-inherit p-2",
+                    "w-full rounded-md border-2 bg-app-800 p-2",
                     errors.contractAddress &&
                       touched.contractAddress &&
                       errors.contractAddress

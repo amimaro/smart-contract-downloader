@@ -11,6 +11,15 @@ const isSymbolObject = (network: string) => {
   return network.indexOf("bsc") >= 0;
 };
 
+const isJsonString = (str: string) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
 const parseSourceCodeObject = (sourceCode: any, network: string) => {
   if (isSymbolObject(network)) {
     const doubleCurlyBracesPattern = /^[{]{2}(.|\r\n)*[}]{2}$/gm;
@@ -19,18 +28,22 @@ const parseSourceCodeObject = (sourceCode: any, network: string) => {
       return JSON.parse(sourceCode).sources;
     }
     return JSON.parse(sourceCode);
+  } else if (isJsonString(sourceCode)) {
+    return JSON.parse(sourceCode);
   }
   return JSON.parse(sourceCode.substr(1, sourceCode.length - 2));
 };
 
 const getSourcesObject = (parsedSourceCode: any, network: string) => {
   if (isSymbolObject(network)) return Object.entries(parsedSourceCode);
-  return Object.entries(parsedSourceCode.sources);
+  if (parsedSourceCode.hasOwnProperty("sources")) {
+    return Object.entries(parsedSourceCode.sources);
+  }
+  return Object.entries(parsedSourceCode);
 };
 
 export const getContractContentList = (sourceCodes: any, network: string) => {
   const contractContent = [];
-  // is array?
   for (const sourceCode of sourceCodes) {
     if (isSingleFileContract(sourceCode.SourceCode)) {
       contractContent.push({
