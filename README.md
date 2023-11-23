@@ -17,6 +17,8 @@ Otherwise, you can open an issue with the address of the blockchain to be added.
 ## Current networks available
 
 - Ethereum Mainnet
+- Sepolia Testnet
+- Holesky Testnet
 - Rinkeby Testnet
 - Ropsten Testnet
 - Kovan Testnet
