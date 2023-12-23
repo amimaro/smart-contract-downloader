@@ -1,22 +1,3 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "animate.css";
-
-@layer base {
-  h1 {
-    @apply text-xl font-semibold tracking-widest md:text-2xl;
-  }
-  h2 {
-    @apply text-lg font-semibold tracking-widest md:text-xl;
-  }
-  a {
-    @apply text-action-400 hover:text-action-500;
-  }
-}
-
-html,
-body,
-#__next {
-  @apply h-full w-full bg-app-900 font-mono text-app-50;
-}
