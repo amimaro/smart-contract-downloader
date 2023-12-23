@@ -64,19 +64,26 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
   },
-  bsc: {
-    label: "Binance Smart Chain Mainnet",
-    url: "https://bscscan.com",
-    apiKey: process.env.APIKEY_BSCSCAN as string,
+  optimistic: {
+    label: "Optimistic Mainnet",
+    url: "https://optimistic.etherscan.io",
+    apiKey: process.env.APIKEY_OPTIMISTIC as string,
     endpoint: (contractAddress: string) =>
-      `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+      `https://api-optimistic.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
   },
-  bscTest: {
-    label: "Binance Smart Chain Testnet",
-    url: "https://testnet.bscscan.com",
-    apiKey: process.env.APIKEY_BSCSCAN as string,
+  "optimistic goerli": {
+    label: "Optimistic Goerli Testnet",
+    url: "https://goerli-optimism.etherscan.io",
+    apiKey: process.env.APIKEY_OPTIMISTIC as string,
     endpoint: (contractAddress: string) =>
-      `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+      `https://api-goerli-optimism.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
+  },
+  "optimistic sepolia": {
+    label: "Optimistic Sepolia Testnet",
+    url: "https://sepolia-optimism.etherscan.io",
+    apiKey: process.env.APIKEY_OPTIMISTIC as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-sepolia-optimism.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
   },
   "arbitrum one": {
     label: "Arbitrum One Mainnet",
@@ -98,6 +105,20 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ARBITRUMSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-goerli.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ARBITRUMSCAN}`,
+  },
+  bsc: {
+    label: "Binance Smart Chain Mainnet",
+    url: "https://bscscan.com",
+    apiKey: process.env.APIKEY_BSCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+  },
+  bscTest: {
+    label: "Binance Smart Chain Testnet",
+    url: "https://testnet.bscscan.com",
+    apiKey: process.env.APIKEY_BSCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
   },
   fantom: {
     label: "Fantom Mainnet",
