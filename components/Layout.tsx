@@ -5,7 +5,7 @@ import BuyMeACoffee from "./BuyMeACoffee";
 
 export default function Layout({ children }: any) {
   return (
-    <main className="h-full w-full p-4">
+    <main className="h-full w-full bg-background p-4 text-foreground dark">
       <Head>
         <title>Smart Contract Downloader</title>
         <meta name="description" content="Find and Download smart contracts" />

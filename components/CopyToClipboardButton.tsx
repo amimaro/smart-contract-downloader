@@ -1,11 +1,9 @@
-import { ClipboardIcon, CheckIcon } from "@heroicons/react/20/solid";
-import { copyToClipboard } from "../utils/helpers";
-import { useAppContext } from "../utils/useAppContext";
-import { useEffect, useState } from "react";
+import { CheckIcon, ClipboardIcon } from "@heroicons/react/20/solid";
 import { Tooltip } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import { copyToClipboard } from "../utils/helpers";
 
 export default function CopyToClipboardButton({ data }: { data: string }) {
-  const { showNotification } = useAppContext();
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
@@ -16,7 +14,7 @@ export default function CopyToClipboardButton({ data }: { data: string }) {
   }, [clicked]);
 
   if (clicked) {
-    return <CheckIcon width={20} color="#050" />;
+    return <CheckIcon width={20} color="#0a0" />;
   }
 
   return (
@@ -24,9 +22,6 @@ export default function CopyToClipboardButton({ data }: { data: string }) {
       <button
         onClick={() => {
           setClicked(true);
-          showNotification({
-            message: "Copied to clipboard",
-          });
           copyToClipboard(data);
         }}
       >
