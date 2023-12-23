@@ -5,20 +5,24 @@ import BuyMeACoffee from "./BuyMeACoffee";
 
 export default function Layout({ children }: any) {
   return (
-    <main className="h-full w-full bg-background p-4 text-foreground dark">
+    <main className="h-full w-full bg-background text-foreground dark">
       <Head>
         <title>Smart Contract Downloader</title>
         <meta name="description" content="Find and Download smart contracts" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col justify-between gap-2 md:flex-row">
-        <h1>Smart Contract Downloader</h1>
-        <div className="flex flex-col items-end gap-4">
-          <AppGithubButtons />
+      <div className="sticky top-0 z-10 flex flex-col justify-between gap-2 bg-zinc-900 p-4 md:flex-row">
+        <h1 className="text-xl">Smart Contract Downloader</h1>
+        <div className="flex gap-4">
           <BuyMeACoffee />
+          <AppGithubButtons />
         </div>
       </div>
-      <AppContextProvider>{children}</AppContextProvider>
+      <AppContextProvider>
+        <div className="bg-gradient-to-r from-slate-900 to-zinc-900 p-4">
+          {children}
+        </div>
+      </AppContextProvider>
     </main>
   );
 }

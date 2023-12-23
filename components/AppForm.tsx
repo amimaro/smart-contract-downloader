@@ -24,10 +24,17 @@ export default function AppForm() {
         return errors;
       }}
     >
-      {({ isSubmitting, errors, touched, values, handleChange, isValid }) => (
+      {({
+        isSubmitting,
+        errors,
+        touched,
+        values,
+        handleChange,
+        setFieldValue,
+      }) => (
         <Form className="flex flex-col gap-4">
           <Link href={NETWORKS[values.network].url} isExternal showAnchorIcon>
-            Blockchain explorer
+            <span className="text-lg font-semibold">Blockchain explorer</span>
           </Link>
           <Select
             id="network"
@@ -54,6 +61,10 @@ export default function AppForm() {
             value={values.contractAddress}
             onChange={handleChange}
             isRequired
+            isClearable
+            onClear={() => {
+              setFieldValue("contractAddress", "");
+            }}
           />
           <Button
             color="primary"
