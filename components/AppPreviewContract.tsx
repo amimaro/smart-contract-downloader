@@ -15,9 +15,11 @@ export default function AppPreviewContract() {
         isExternal
         showAnchorIcon
       >
-        Contract: {contract.name}
+        <span className="text-lg font-semibold">Contract: {contract.name}</span>
       </Link>
-      <Button onClick={downloadContract}>Download contract</Button>
+      <Button onClick={downloadContract}>
+        <span className="font-semibold">Download contract</span>
+      </Button>
     </div>
   );
 

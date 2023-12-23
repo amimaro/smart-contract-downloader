@@ -61,7 +61,7 @@ export default function AppForm() {
             isLoading={isSubmitting}
             className="mx-auto max-w-fit"
           >
-            Find contract
+            <span className="font-semibold">Find contract</span>
           </Button>
         </Form>
       )}
