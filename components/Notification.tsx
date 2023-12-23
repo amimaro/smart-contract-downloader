@@ -31,14 +31,12 @@ export const Notification = forwardRef((_props, ref) => {
   return (
     <>
       {copied && (
-        <div className="fixed top-14 right-1/2 z-50 mx-auto translate-x-1/2 -translate-y-1/2 transform">
+        <div className="fixed right-1/2 top-14 z-50 mx-auto -translate-y-1/2 translate-x-1/2 transform">
           <div
             className={cn(
               "w-72 rounded-md p-2 text-center font-bold tracking-widest ",
               animation,
-              type === "success"
-                ? "bg-success-200 text-success-700"
-                : "bg-error-200 text-error-700"
+              "bg-warning-400"
             )}
           >
             {message}

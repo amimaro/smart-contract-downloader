@@ -25,7 +25,7 @@ export default function CopyToClipboardButton({ data }: { data: string }) {
           copyToClipboard(data);
         }}
       >
-        <ClipboardIcon width={20} color="#555" />
+        <ClipboardIcon width={20} color="#ccc" />
       </button>
     </Tooltip>
   );

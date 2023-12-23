@@ -1,3 +1,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "animate.css";
+
+html,
+body,
+#__next {
+  @apply h-full w-full bg-gradient-to-r from-slate-900 to-zinc-900 font-mono;
+}

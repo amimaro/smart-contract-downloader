@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Button, Input, Link, Select, SelectItem } from "@nextui-org/react";
 import { Form, Formik } from "formik";
 import { NETWORKS } from "../networks";
@@ -24,56 +25,50 @@ export default function AppForm() {
         return errors;
       }}
     >
-      {({
-        isSubmitting,
-        errors,
-        touched,
-        values,
-        handleChange,
-        setFieldValue,
-      }) => (
-        <Form className="flex flex-col gap-4">
-          <Link href={NETWORKS[values.network].url} isExternal showAnchorIcon>
-            <span className="text-lg font-semibold">Blockchain explorer</span>
-          </Link>
-          <Select
-            id="network"
-            name="network"
-            label="Network"
-            placeholder="Select a network"
-            value={values.network}
-            onChange={handleChange}
-            defaultSelectedKeys={[values.network]}
-          >
-            {Object.entries(NETWORKS).map(([networkId, networkOption]) => (
-              <SelectItem key={networkId} value={networkId}>
-                {networkOption.label}
-              </SelectItem>
-            ))}
-          </Select>
+      {({ isSubmitting, values, handleChange, isValid }) => (
+        <Form className="flex flex-col items-center gap-4 md:flex-row md:items-end">
+          <div className="flex w-full flex-col gap-2 md:w-1/2">
+            <Link href={NETWORKS[values.network].url} isExternal showAnchorIcon>
+              <span className="text-lg font-semibold">Blockchain explorer</span>
+            </Link>
+            <Select
+              id="network"
+              name="network"
+              label="Network"
+              placeholder="Select a network"
+              value={values.network}
+              onChange={handleChange}
+              defaultSelectedKeys={[values.network]}
+            >
+              {Object.entries(NETWORKS).map(([networkId, networkOption]) => (
+                <SelectItem key={networkId} value={networkId}>
+                  {networkOption.label}
+                </SelectItem>
+              ))}
+            </Select>
+          </div>
           <Input
+            className="md:w-1/2"
             id="contractAddress"
             name="contractAddress"
             type="test"
             autoComplete="off"
             label="Contract address"
-            errorMessage={touched.contractAddress && errors.contractAddress}
             value={values.contractAddress}
             onChange={handleChange}
             isRequired
-            isClearable
-            onClear={() => {
-              setFieldValue("contractAddress", "");
-            }}
+            endContent={
+              <Button
+                type="submit"
+                isLoading={isSubmitting}
+                className="p-2"
+                isIconOnly
+                isDisabled={!isValid}
+              >
+                <MagnifyingGlassIcon />
+              </Button>
+            }
           />
-          <Button
-            color="primary"
-            type="submit"
-            isLoading={isSubmitting}
-            className="mx-auto max-w-fit"
-          >
-            <span className="font-semibold">Find contract</span>
-          </Button>
         </Form>
       )}
     </Formik>
