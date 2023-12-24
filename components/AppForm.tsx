@@ -1,11 +1,45 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { Button, Input, Link, Select, SelectItem } from "@nextui-org/react";
+import {
+  Button,
+  Input,
+  Link,
+  Select,
+  SelectItem,
+  SelectSection,
+} from "@nextui-org/react";
 import { Form, Formik } from "formik";
 import { NETWORKS } from "../networks";
 import { useAppContext } from "../utils/useAppContext";
 
 export default function AppForm() {
   const { fetchContract } = useAppContext();
+  const networkOptions = Object.entries(
+    Object.entries(NETWORKS).reduce(
+      (acc: Record<string, any[]>, [networkId, networkOption]) => {
+        const section = networkOption.section || "Other";
+        if (!(section in acc)) {
+          acc[section] = [];
+        }
+        acc[section].push({
+          id: networkId,
+          ...networkOption,
+        });
+        return acc;
+      },
+      {}
+    )
+  );
+  const networkOptionsMarkup = networkOptions.map(
+    ([sectionName, networkOptions]: any) => (
+      <SelectSection key={sectionName} title={sectionName} showDivider>
+        {networkOptions.map((networkOption: any) => (
+          <SelectItem key={networkOption.id} value={networkOption.id}>
+            {networkOption.label}
+          </SelectItem>
+        ))}
+      </SelectSection>
+    )
+  );
   return (
     <Formik
       initialValues={{
@@ -28,9 +62,6 @@ export default function AppForm() {
       {({ isSubmitting, values, handleChange, isValid }) => (
         <Form className="flex flex-col items-center gap-4 md:flex-row md:items-end">
           <div className="flex w-full flex-col gap-2 md:w-1/2">
-            <Link href={NETWORKS[values.network].url} isExternal showAnchorIcon>
-              <span className="text-lg font-semibold">Blockchain explorer</span>
-            </Link>
             <Select
               id="network"
               name="network"
@@ -39,12 +70,17 @@ export default function AppForm() {
               value={values.network}
               onChange={handleChange}
               defaultSelectedKeys={[values.network]}
+              endContent={
+                <Link
+                  href={NETWORKS[values.network].url}
+                  isExternal
+                  showAnchorIcon
+                >
+                  site
+                </Link>
+              }
             >
-              {Object.entries(NETWORKS).map(([networkId, networkOption]) => (
-                <SelectItem key={networkId} value={networkId}>
-                  {networkOption.label}
-                </SelectItem>
-              ))}
+              {networkOptionsMarkup}
             </Select>
           </div>
           <Input

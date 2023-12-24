@@ -15,4 +15,5 @@ export interface NetworkItem {
   url: string;
   apiKey: string;
   endpoint: (contractAddress: string) => string;
+  section?: string;
 }

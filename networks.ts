@@ -7,6 +7,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   sepolia: {
     label: "Sepolia Testnet",
@@ -14,6 +15,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-sepolia.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   holesky: {
     label: "Holesky Testnet",
@@ -21,6 +23,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-holesky.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   rinkeby: {
     label: "Rinkeby Testnet",
@@ -28,6 +31,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-rinkeby.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   ropsten: {
     label: "Ropsten Testnet",
@@ -35,6 +39,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-ropsten.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   kovan: {
     label: "Kovan Testnet",
@@ -42,6 +47,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-kovan.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   goerli: {
     label: "Goerli Testnet",
@@ -49,6 +55,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-goerli.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+    section: "Ethereum",
   },
   polygon: {
     label: "Polygon Mainnet",
@@ -56,6 +63,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_POLYGONSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
+    section: "Polygon",
   },
   polygonTest: {
     label: "Polygon Mumbai Testnet",
@@ -63,6 +71,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_POLYGONSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
+    section: "Polygon",
   },
   optimistic: {
     label: "Optimistic Mainnet",
@@ -70,6 +79,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_OPTIMISTIC as string,
     endpoint: (contractAddress: string) =>
       `https://api-optimistic.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
+    section: "Optimistic",
   },
   "optimistic goerli": {
     label: "Optimistic Goerli Testnet",
@@ -77,6 +87,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_OPTIMISTIC as string,
     endpoint: (contractAddress: string) =>
       `https://api-goerli-optimism.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
+    section: "Optimistic",
   },
   "optimistic sepolia": {
     label: "Optimistic Sepolia Testnet",
@@ -84,6 +95,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_OPTIMISTIC as string,
     endpoint: (contractAddress: string) =>
       `https://api-sepolia-optimism.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_OPTIMISTIC}`,
+    section: "Optimistic",
   },
   "arbitrum one": {
     label: "Arbitrum One Mainnet",
@@ -91,6 +103,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_BSCSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+    section: "Arbitrum",
   },
   "arbitrum nova": {
     label: "Arbitrum Nova Mainnet",
@@ -98,6 +111,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ARBITRUMSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-nova.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ARBITRUMSCAN}`,
+    section: "Arbitrum",
   },
   "arbitrum goerli": {
     label: "Arbitrum Goerli Testnet",
@@ -105,6 +119,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_ARBITRUMSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-goerli.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ARBITRUMSCAN}`,
+    section: "Arbitrum",
   },
   bsc: {
     label: "Binance Smart Chain Mainnet",
@@ -112,6 +127,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_BSCSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+    section: "Binance Smart Chain",
   },
   bscTest: {
     label: "Binance Smart Chain Testnet",
@@ -119,6 +135,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_BSCSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+    section: "Binance Smart Chain",
   },
   fantom: {
     label: "Fantom Mainnet",
@@ -126,6 +143,7 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_FTMSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.ftmscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_FTMSCAN}`,
+    section: "Fantom",
   },
   fantomTest: {
     label: "Fantom Testnet",
@@ -133,5 +151,6 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_FTMSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-testnet.ftmscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_FTMSCAN}`,
+    section: "Fantom",
   },
 };
