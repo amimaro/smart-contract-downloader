@@ -19,7 +19,9 @@ export default function AppPreviewContract() {
         <span className="text-lg font-semibold">Contract: {contract.name}</span>
       </Link>
       <div className="flex items-center gap-4">
-        <BuyMeACoffee />
+        <div className="hidden sm:block">
+          <BuyMeACoffee />
+        </div>
         <Button onClick={downloadContract}>
           <span className="font-semibold">Download contract</span>
         </Button>
