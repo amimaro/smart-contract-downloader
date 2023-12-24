@@ -11,7 +11,7 @@ export default function BuyMeACoffee() {
       <img
         src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
         alt="Buy Me A Coffee"
-        className="h-8 w-40"
+        className="h-10 w-40"
       />
     </a>
   );

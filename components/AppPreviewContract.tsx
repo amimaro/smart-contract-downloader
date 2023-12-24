@@ -1,6 +1,7 @@
 import { Button, Link } from "@nextui-org/react";
 import { useAppContext } from "../utils/useAppContext";
 import CopyToClipboardButton from "./CopyToClipboardButton";
+import BuyMeACoffee from "./BuyMeACoffee";
 
 export default function AppPreviewContract() {
   const { contract, hasContract, showNotification, downloadContract } =
@@ -17,9 +18,12 @@ export default function AppPreviewContract() {
       >
         <span className="text-lg font-semibold">Contract: {contract.name}</span>
       </Link>
-      <Button onClick={downloadContract}>
-        <span className="font-semibold">Download contract</span>
-      </Button>
+      <div className="flex items-center gap-4">
+        <BuyMeACoffee />
+        <Button onClick={downloadContract}>
+          <span className="font-semibold">Download contract</span>
+        </Button>
+      </div>
     </div>
   );
 
