@@ -6,6 +6,12 @@ After finding the desired contract you can download the package as a compressed 
 
 Also feel free to open an issue for any feature request, bugs, etc.
 
+## Also try the CLI tool:
+
+```
+npx smart-contract-downloader
+```
+
 ## Adding a new network
 
 Edit [`networks.ts`](https://github.com/amimaro/smart-contract-downloader/blob/main/networks.ts) file to add a new blockchain explorer option.
