@@ -6,7 +6,7 @@ After finding the desired contract you can download the package as a compressed 
 
 Also feel free to open an issue for any feature request, bugs, etc.
 
-## Also try the CLI tool:
+## Also try the CLI tool
 
 ```
 npx smart-contract-downloader
