@@ -12,8 +12,6 @@ Also feel free to open an issue for any feature request, bugs, etc.
 npx smart-contract-downloader
 ```
 
-[Repository](https://github.com/amimaro/smart-contract-downloader-cli)
-
 ## Adding a new network
 
 Edit [`networks.ts`](https://github.com/amimaro/smart-contract-downloader/blob/main/networks.ts) file to add a new blockchain explorer option.
