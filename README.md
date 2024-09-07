@@ -12,6 +12,8 @@ Also feel free to open an issue for any feature request, bugs, etc.
 npx smart-contract-downloader
 ```
 
+[Repository](https://github.com/amimaro/smart-contract-downloader-cli)
+
 ## Adding a new network
 
 Edit [`networks.ts`](https://github.com/amimaro/smart-contract-downloader/blob/main/networks.ts) file to add a new blockchain explorer option.
@@ -19,25 +21,6 @@ Edit [`networks.ts`](https://github.com/amimaro/smart-contract-downloader/blob/m
 It is not necessary to fill in all the fields unless you know the API and want to do your own tests.
 
 Otherwise, you can open an issue with the address of the blockchain to be added.
-
-## Current networks available
-
-- Ethereum Mainnet
-- Sepolia Testnet
-- Holesky Testnet
-- Rinkeby Testnet
-- Ropsten Testnet
-- Kovan Testnet
-- Goerli Testnet
-- Polygon Mainnet
-- Polygon Mumbai Testnet
-- Binance Smart Chain Mainnet
-- Binance Smart Chain Testnet
-- Arbitrum One Mainnet
-- Arbitrum Nova Mainnet
-- Arbitrum Goerli Testnet
-- Fantom Mainnet
-- Fantom Testnet
 
 ## Development - Getting started
 
