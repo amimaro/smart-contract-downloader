@@ -73,6 +73,22 @@ export const NETWORKS: NetworksObject = {
       `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
     section: "Polygon",
   },
+  polygonTestAmoy: {
+    label: "Polygon Amoy Testnet",
+    url: "https://amoy.polygonscan.com/",
+    apiKey: process.env.APIKEY_POLYGONSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-amoy.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
+    section: "Polygon",
+  },
+  polygonTestCardonaZkevm: {
+    label: "Polygon Cardona ZKEVM Testnet",
+    url: "https://cardona-zkevm.polygonscan.com/",
+    apiKey: process.env.APIKEY_POLYGONSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-cardona-zkevm.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
+    section: "Polygon",
+  },
   optimistic: {
     label: "Optimistic Mainnet",
     url: "https://optimistic.etherscan.io",
