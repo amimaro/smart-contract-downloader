@@ -1,13 +1,17 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
-  Button,
-  Input,
-  Link,
   Select,
+  SelectContent,
+  SelectGroup,
   SelectItem,
-  SelectSection,
-} from "@nextui-org/react";
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Form, Formik } from "formik";
+import { Search } from "lucide-react";
+import Link from "next/link";
 import { NETWORKS } from "../networks";
 import { useAppContext } from "../utils/useAppContext";
 
@@ -15,13 +19,13 @@ export default function AppForm() {
   const { fetchContract } = useAppContext();
   const networkOptions = Object.entries(
     Object.entries(NETWORKS).reduce(
-      (acc: Record<string, any[]>, [networkId, networkOption]) => {
+      (acc: Record<number, any[]>, [chainId, networkOption]) => {
         const section = networkOption.section || "Other";
         if (!(section in acc)) {
           acc[section] = [];
         }
         acc[section].push({
-          id: networkId,
+          id: chainId,
           ...networkOption,
         });
         return acc;
@@ -29,25 +33,15 @@ export default function AppForm() {
       {}
     )
   );
-  const networkOptionsMarkup = networkOptions.map(
-    ([sectionName, networkOptions]: any) => (
-      <SelectSection key={sectionName} title={sectionName} showDivider>
-        {networkOptions.map((networkOption: any) => (
-          <SelectItem key={networkOption.id} value={networkOption.id}>
-            {networkOption.label}
-          </SelectItem>
-        ))}
-      </SelectSection>
-    )
-  );
+
   return (
     <Formik
       initialValues={{
-        network: process.env.NEXT_PUBLIC_DEFAULT_NETWORK || "ethmain",
+        chainId: Number(process.env.NEXT_PUBLIC_DEFAULT_NETWORK) || 1,
         contractAddress: process.env.NEXT_PUBLIC_TEST_CONTRACT_ADDRESS || "",
       }}
       onSubmit={(values) =>
-        fetchContract(values.network, values.contractAddress)
+        fetchContract(values.chainId, values.contractAddress)
       }
       validate={(values) => {
         const errors: { apiKey?: string; contractAddress?: string } = {};
@@ -59,52 +53,93 @@ export default function AppForm() {
         return errors;
       }}
     >
-      {({ isSubmitting, values, handleChange, isValid }) => (
+      {({
+        isSubmitting,
+        values,
+        handleChange,
+        setFieldValue,
+        isValid,
+        errors,
+      }) => (
         <Form className="flex flex-col items-center gap-4 md:flex-row md:items-end">
           <div className="flex w-full flex-col gap-2 md:w-1/2">
+            <div className="flex items-center justify-between gap-2">
+              <label
+                htmlFor="network"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Network
+              </label>
+              <Link
+                href={NETWORKS[values.chainId].url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary underline-offset-4 hover:underline"
+              >
+                site →
+              </Link>
+            </div>
             <Select
-              id="network"
-              name="network"
-              label="Network"
-              placeholder="Select a network"
-              value={values.network}
-              onChange={handleChange}
-              defaultSelectedKeys={[values.network]}
-              endContent={
-                <Link
-                  href={NETWORKS[values.network].url}
-                  isExternal
-                  showAnchorIcon
-                >
-                  site
-                </Link>
-              }
+              value={values.chainId.toString()}
+              onValueChange={(value) => setFieldValue("chainId", value)}
             >
-              {networkOptionsMarkup}
+              <SelectTrigger id="network" className="w-full">
+                <SelectValue placeholder="Select a network" />
+              </SelectTrigger>
+              <SelectContent className="max-h-80 overflow-y-auto">
+                {networkOptions.map(([sectionName, networkOpts]: any) => (
+                  <SelectGroup key={sectionName}>
+                    <SelectLabel>{sectionName}</SelectLabel>
+                    {networkOpts.map((networkOption: any) => (
+                      <SelectItem
+                        key={networkOption.id}
+                        value={networkOption.id}
+                      >
+                        {networkOption.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                ))}
+              </SelectContent>
             </Select>
           </div>
-          <Input
-            className="md:w-1/2"
-            id="contractAddress"
-            name="contractAddress"
-            type="test"
-            autoComplete="off"
-            label="Contract address"
-            value={values.contractAddress}
-            onChange={handleChange}
-            isRequired
-            endContent={
-              <Button
-                type="submit"
-                isLoading={isSubmitting}
-                className="p-2"
-                isIconOnly
-                isDisabled={!isValid}
+          <div className="flex w-full flex-1 flex-col gap-2 md:flex-row md:items-end md:gap-2">
+            <div className="flex flex-1 flex-col gap-2">
+              <label
+                htmlFor="contractAddress"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                <MagnifyingGlassIcon />
-              </Button>
-            }
-          />
+                Contract address
+              </label>
+              <Input
+                id="contractAddress"
+                name="contractAddress"
+                type="text"
+                autoComplete="off"
+                placeholder="0x..."
+                value={values.contractAddress}
+                onChange={handleChange}
+                className="md:min-w-[280px]"
+                aria-invalid={!!errors.contractAddress}
+              />
+              {errors.contractAddress && (
+                <p className="text-sm text-destructive">
+                  {errors.contractAddress}
+                </p>
+              )}
+            </div>
+            <Button
+              type="submit"
+              disabled={!isValid || isSubmitting}
+              className="h-9 w-9 shrink-0"
+            >
+              {isSubmitting ? (
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              ) : (
+                <Search className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>

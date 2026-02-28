@@ -1,5 +1,10 @@
-import { CheckIcon, ClipboardIcon } from "@heroicons/react/20/solid";
-import { Tooltip } from "@nextui-org/react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { copyToClipboard } from "../utils/helpers";
 
@@ -8,25 +13,38 @@ export default function CopyToClipboardButton({ data }: { data: string }) {
 
   useEffect(() => {
     if (!clicked) return;
-    setTimeout(() => {
-      setClicked(false);
-    }, 1000);
+    const t = setTimeout(() => setClicked(false), 1000);
+    return () => clearTimeout(t);
   }, [clicked]);
 
   if (clicked) {
-    return <CheckIcon width={20} color="#0a0" />;
+    return (
+      <span className="inline-flex text-green-600" aria-hidden>
+        <Check className="h-5 w-5" />
+      </span>
+    );
   }
 
   return (
-    <Tooltip content="Copy content to clipboard">
-      <button
-        onClick={() => {
-          setClicked(true);
-          copyToClipboard(data);
-        }}
-      >
-        <ClipboardIcon width={20} color="#ccc" />
-      </button>
-    </Tooltip>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            onClick={() => {
+              setClicked(true);
+              copyToClipboard(data);
+            }}
+            className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+            aria-label="Copy content to clipboard"
+          >
+            <Copy className="h-5 w-5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Copy content to clipboard</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
